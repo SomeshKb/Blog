@@ -1,0 +1,52 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 32% 32% 32%;  
+    grid-gap: 10px;
+    background-color: #fff;
+    
+}
+
+li {
+    float: left;
+    list-style-type: none;
+    background: rgb(134, 134, 134);
+    left: 0;
+    padding: 4px;
+    border-radius: 10px;
+    margin: 4px;
+}
+
+#blog li h3{
+    background: rgb(109, 109, 109);
+    color: black;
+    margin: 0%;
+    padding: 8px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+#blog li #content{
+    background: rgb(134, 134, 134);
+    color: rgb(255, 255, 255);
+    margin: 0%;
+    padding: 4px;
+    cursor: default;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    align-items: center;
+    align-self: center;
+    text-align: center;
+}
+
+#blog li #content a{
+
+    color: aquamarine;
+    cursor: pointer;
+
+}

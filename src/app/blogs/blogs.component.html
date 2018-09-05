@@ -1,0 +1,11 @@
+<div>
+    <h1>BLOGS</h1>
+    <ul id="blog">
+        <li *ngFor="let blog of blogs">
+            <h3>{{blog.title}} </h3>
+            <span id="content">{{blog.content}} <a (click)="onSelect(blog)" routerLink="/blog/{{blog.id}}">...</a></span>
+        </li>
+    </ul>
+</div>
+
+<app-blog-details [selectedBlog]=selectedBlog></app-blog-details>
