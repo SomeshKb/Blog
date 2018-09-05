@@ -7,7 +7,6 @@ ul {
     grid-template-columns: 32% 32% 32%;  
     grid-gap: 10px;
     background-color: #fff;
-    
 }
 
 li {
@@ -48,5 +47,6 @@ h1 {
 
     color: aquamarine;
     cursor: pointer;
+    text-decoration: none;
 
 }

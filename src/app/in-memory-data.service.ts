@@ -14,6 +14,6 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 9, title: 'Magma'    , content: 'Some content inside are  usually boring and dull plaese check the content decide the content'},
       { id: 10, title: 'Tornado' , content: 'Some content inside are  usually boring and dull plaese check the content decide the content'}
     ];
-    return {blogs};
+return {blogs};
   }
 }

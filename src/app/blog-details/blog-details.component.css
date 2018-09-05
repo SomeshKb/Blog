@@ -1,0 +1,29 @@
+.heading{
+    margin: auto auto 20px auto;
+    width: 70%;
+    box-shadow: 10px 10px grey;
+
+    background: #04bb7e;
+    padding: 10px;
+    text-align: center;
+}
+    
+.heading #title{
+    font-size: 60px;
+    text-align: center
+    
+}
+
+.main{
+margin: auto;
+width: 60%;
+background: #7fffd4;
+padding: 10px;
+text-align: center;
+}
+
+.main #content{
+    font-size: 30px;
+    text-align: center
+    
+}
