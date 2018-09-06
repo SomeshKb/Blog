@@ -33,11 +33,9 @@
 
 .main{
 margin: auto;
-
 width: 60%;
 background: #7fffd4;
 padding: 10px;
-text-align: center;
 }
 
 .main #content{

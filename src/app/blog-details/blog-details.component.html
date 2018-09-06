@@ -8,9 +8,8 @@
       <span id="publishDate">on {{blog.published_date}}</span>
   </div>
 
-
-  <div class="main" >
-    <span id="content">{{blog.content}}</span>
+  <div class="main" [innerHTML]="blog.content" >
+    
   </div>
 
 </div>

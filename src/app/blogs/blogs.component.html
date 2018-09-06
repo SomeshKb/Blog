@@ -3,7 +3,7 @@
         <li *ngFor="let blog of blogs">
             <a (click)="onSelect(blog)" routerLink="/blog/{{blog.id}}" >
             <h3>{{blog.title}} </h3>
-            <span id="content">{{blog.content|limitParagraph}} ....</span>
+            <span id="content" [innerHTML]="blog.content|limitParagraph">....</span>
             </a>
         </li>
         
