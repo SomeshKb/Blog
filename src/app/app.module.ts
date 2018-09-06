@@ -10,6 +10,9 @@ import { BlogService } from 'src/app/blog.service';
 import { AppRoutingModule } from './/app-routing.module';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { CommonModule } from '@angular/common';
+import { limitParagraph } from 'src/app/limitParagraph.pipe';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 
 
@@ -17,7 +20,10 @@ import { CommonModule } from '@angular/common';
   declarations: [
     AppComponent,
     BlogsComponent,
-    BlogDetailsComponent
+    BlogDetailsComponent,
+    limitParagraph,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -26,9 +32,9 @@ import { CommonModule } from '@angular/common';
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryDataService, { dataEncapsulation: false }
+    // ),
 
     AppRoutingModule  ],
   providers: [BlogService],
