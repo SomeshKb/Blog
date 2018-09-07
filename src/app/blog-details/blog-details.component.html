@@ -5,11 +5,11 @@
   <div class="miniHeading" > 
       <span id="author">written by: {{blog.author}} </span>
       
-      <span id="publishDate">on {{blog.published_date}}</span>
+      <span id="publishDate">on {{blog.published_date}}   </span>
+      <button (click)="hitLike()" >Like</button>{{blog.likes}}
+
   </div>
 
-  <div class="main" [innerHTML]="blog.content" >
-    
-  </div>
+  <div class="main" [innerHTML]="blog.content" ></div>
 
 </div>

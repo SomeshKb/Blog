@@ -5,14 +5,17 @@ import { AppComponent } from './app.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
-import { BlogService } from 'src/app/blog.service';
+import { InMemoryDataService } from './Services/in-memory-data.service';
+import { BlogService } from 'src/app/Services/blog.service';
 import { AppRoutingModule } from './/app-routing.module';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { CommonModule } from '@angular/common';
-import { limitParagraph } from 'src/app/limitParagraph.pipe';
+import { limitParagraph } from 'src/app/pipe/limitParagraph.pipe';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 
@@ -23,7 +26,10 @@ import { FooterComponent } from './shared/footer/footer.component';
     BlogDetailsComponent,
     limitParagraph,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    NotFoundComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     CommonModule,

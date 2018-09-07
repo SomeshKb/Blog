@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Blog } from './blog';
 import { Observable, of } from 'rxjs';
+import { Blog } from '../model/blog';
+
 
 
 @Injectable({
@@ -23,5 +24,14 @@ export class BlogService {
     const url = `${this.blogUrl}/${id}`;
     return this.http.get<Blog>(url);
   }
+
+  postLike(updateBlog: Blog){
+    const url =this.blogUrl+"/like/"+updateBlog.id;
+    console.log(url);
+    return this.http.post(url,updateBlog);
+  }
+
 }
+
+
 

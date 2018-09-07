@@ -1,6 +1,7 @@
 footer {
   display: grid;
   padding: 20px;
+  align-self: baseline;
   grid-template-columns: 1fr auto;
   grid-template-rows: repeat(3, 100px);
   grid-gap: 1em;

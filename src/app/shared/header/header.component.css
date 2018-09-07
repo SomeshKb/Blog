@@ -1,6 +1,8 @@
 header {
-  background-color: #333;
+  background-color: rgb(94, 94, 94);
   color: #ddd;
+  position: sticky;
+  top: 0;
   width: 100%;
   display: flex;
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BlogService } from '../blog.service';
-import { Blog } from 'src/app/blog';
+import { BlogService } from '../Services/blog.service';
+import { Blog } from 'src/app/model/blog';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
@@ -14,16 +14,25 @@ export class BlogDetailsComponent implements OnInit {
   @Input() selectedBlog: Blog;
 
   blog: Blog;
+  id: number;
   constructor(private blogService: BlogService , private route: ActivatedRoute
     , private router: Router) { }
   ngOnInit() {
-    const id: any = +this.route.snapshot.paramMap.get('id');
-    this.getBlogDetail(id);
+    this.id = +this.route.snapshot.paramMap.get('id');
+    this.getBlogDetail(this.id);
   }
 
   getBlogDetail(id: number): void {
     this.blogService.getHero(id)
     .subscribe(blog => this.blog = blog);
   }
+
+  hitLike(): void{
+    this.blog.likes+=1;
+    console.log("hit");
+    this.blogService.postLike(this.blog)
+    .subscribe();
+  }
+
 
 }
