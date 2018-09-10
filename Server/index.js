@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+
 app.get('/blog/all', function (req, res) {
    fs.readFile( __dirname  + "/data.json", 'utf8', function (err, data) {
 
@@ -35,10 +36,9 @@ app.get('/blog/:id', function (req, res) {
         fs.readFile( __dirname + "/" + "data.json", 'utf8', function readFileCallback(err, data) {
            
             result=JSON.parse(data);
-            
             result.data=result.data.filter((blog)=>{
              if(blog.id==req.params.id){
-               blog.likes=req.body.likes;
+               blog.likes=blog.likes+1;
             }
             return blog;
             });
@@ -47,8 +47,36 @@ app.get('/blog/:id', function (req, res) {
 
     res.end();
 });
-
  })
+
+
+
+
+ app.post('/blog/signup', function (req, res) {
+  fs.readFile( __dirname + "/" + "data.json", 'utf8', function readFileCallback(err, data) {
+           
+    result=JSON.parse(data);
+    
+    result.user.push(req.body);
+    console.log(result.user.map(x=>x));
+    fs.writeFileSync(__dirname+'/data.json',JSON.stringify(result), 'utf8');  
+
+    });
+  res.end();
+  });
+
+  app.post('/blog/login', function (req, res) {
+    fs.readFile( __dirname + "/" + "data.json", 'utf8', function readFileCallback(err, data) {
+             
+      result=JSON.parse(data);
+      
+      result.user.push(req.body);
+      console.log(result.user.map(x=>x));
+      fs.writeFileSync(__dirname+'/data.json',JSON.stringify(result), 'utf8');  
+  
+      });
+    res.end();
+    });
 
 
 var server = app.listen(8000, function () {

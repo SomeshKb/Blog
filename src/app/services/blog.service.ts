@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Blog } from '../model/blog';
+import { User } from '../model/User';
 
 
 
@@ -31,7 +32,9 @@ export class BlogService {
     return this.http.post(url,updateBlog);
   }
 
+  createUser(user:User){
+    const url =this.blogUrl+"/signup";
+    return this.http.post(url,user);
+  }
+
 }
-
-
-

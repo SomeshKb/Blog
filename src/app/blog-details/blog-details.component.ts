@@ -28,8 +28,6 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   hitLike(): void{
-    this.blog.likes+=1;
-    console.log("hit");
     this.blogService.postLike(this.blog)
     .subscribe();
   }

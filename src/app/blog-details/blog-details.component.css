@@ -1,8 +1,7 @@
 .heading{
     margin: 10px auto 20px auto;
     width: 70%;
-    box-shadow: 10px 10px rgb(206, 206, 206);
-    background: #04bb7e;
+    background: #575757;
     padding: 10px;
     text-align: center;
 }
@@ -34,12 +33,15 @@
 .main{
 margin: auto;
 width: 60%;
-background: #7fffd4;
-padding: 10px;
+color: #ffffff;
+font-family: Courier New, Courier, monospace;
+background: #4b4b4b;
+padding: 20px;
 }
 
 .main #content{
+    margin: 10%;
     font-size: 30px;
-    text-align: center
+    text-align: center;
     
 }
