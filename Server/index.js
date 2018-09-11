@@ -52,7 +52,7 @@ app.get('/blog/:id', function (req, res) {
 
 
 
- app.post('/blog/signup', function (req, res) {
+ app.post('/blog/register', function (req, res) {
   fs.readFile( __dirname + "/" + "data.json", 'utf8', function readFileCallback(err, data) {
            
     result=JSON.parse(data);
@@ -65,7 +65,8 @@ app.get('/blog/:id', function (req, res) {
   res.end();
   });
 
-  app.post('/blog/login', function (req, res) {
+
+  app.get('/blog/login', function (req, res) {
     fs.readFile( __dirname + "/" + "data.json", 'utf8', function readFileCallback(err, data) {
              
       result=JSON.parse(data);
