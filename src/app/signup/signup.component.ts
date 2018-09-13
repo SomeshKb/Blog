@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BlogService } from 'src/app/Services/blog.service';
-import { User } from '../model/User';
+import { TokenPayload } from '../model/user';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -13,21 +15,27 @@ export class SignupComponent implements OnInit {
   emailRegex = /^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$/;
   showSucessMessage: boolean;
   serverErrorMessages: string;
-  selectedUser:User ={
+  credentials:TokenPayload ={
      'name':"",
      'email':"",
      'password':""
   };
 
-  constructor(private blogService:BlogService) { }
+  constructor(private auth:AuthenticationService,private router: Router) { }
 
   ngOnInit() {
   }
 
   onSubmit(form: NgForm) {
-
+    this.register();
   }
 
+  register() {
+    this.auth.register(this.credentials).subscribe(() => {
+    }, (err) => {
+      console.error(err);
+    });
+  }
 
   resetForm(form: NgForm) {
 
