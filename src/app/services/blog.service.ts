@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Blog } from '../model/blog';
-import { User } from '../model/User';
-
+import { User } from '../model/user';
 
 
 @Injectable({
@@ -21,8 +20,8 @@ export class BlogService {
     return this.http.get<Blog[]>(url);
   }
 
-  getHero(id: number): Observable<Blog> {
-    const url = `${this.blogUrl}/${id}`;
+  getBlog(id: number): Observable<Blog> {
+    const url = `${this.blogUrl}/${id}`;``
     return this.http.get<Blog>(url);
   }
 
@@ -33,7 +32,13 @@ export class BlogService {
   }
 
   createUser(user:User){
-    const url =this.blogUrl+"/signup";
+    const url =this.blogUrl+"/register";
+    console.log(url);
+    return this.http.post(url,user);
+  }
+
+  login(user:User){
+    const url =this.blogUrl+"/login";
     return this.http.post(url,user);
   }
 

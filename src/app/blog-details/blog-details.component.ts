@@ -1,8 +1,7 @@
+import {Blog} from './../model/blog';
 import { Component, OnInit, Input } from '@angular/core';
 import { BlogService } from '../Services/blog.service';
-import { Blog } from 'src/app/model/blog';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 
 @Component({
   selector: 'app-blog-details',
@@ -17,13 +16,14 @@ export class BlogDetailsComponent implements OnInit {
   id: number;
   constructor(private blogService: BlogService , private route: ActivatedRoute
     , private router: Router) { }
+    
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id');
     this.getBlogDetail(this.id);
   }
 
   getBlogDetail(id: number): void {
-    this.blogService.getHero(id)
+    this.blogService.getBlog(id)
     .subscribe(blog => this.blog = blog);
   }
 
@@ -31,6 +31,7 @@ export class BlogDetailsComponent implements OnInit {
     this.blogService.postLike(this.blog)
     .subscribe();
   }
+
 
 
 }

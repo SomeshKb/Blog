@@ -3,23 +3,21 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
   }
-
   
   form {
     max-width: 300px;
     margin: 10px auto;
     padding: 10px 20px;
-    background: #a3a3a3;
+    background: #ececec;
     border-radius: 16px;
+    border: 10px #444444;
+    box-shadow: 8px 8px  rgb(179, 179, 179);
   }
-  
-  h1 {
-    margin: 0 0 30px 0;
-    text-align: center;
-  }
-  
-  input {
-    border: none;
+   
+  input[type="text"],
+  input[type="password"],
+  input[type="email"]{
+      border: none;
     font-size: 16px;
     height: auto;
     margin: 0;
@@ -27,45 +25,56 @@
     padding: 15px;
     width: 100%;
     background-color: #ffffff;
-    color: #505050;
+    color: #6d6d6d;
     box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-    margin-bottom: 30px;
+    margin-top: 30px;
     border-radius: 15px;
   }
     
-  button {
+  input[type="submit"]{
     padding: 19px 39px 18px 39px;
-    color: #FFF;
+    color: rgb(223, 223, 223);
     background-color: #757575;
     font-size: 22px;
     text-align: center;
     font-style: normal;
     border-radius: 15px;
     width: 100%;
+    margin-top: 30px;
     margin-bottom: 10px;
   }
 
-  button:hover {
-
+  input[type="submit"]:hover {
     cursor: pointer;
     box-shadow: 6px 6px rgb(0, 0, 0);
     background-color: #444444;
 
-
   }
+  .signUp{
+    max-width: 200px;
+
+    margin: 10px auto;
   
-  label {
-    display: block;
+  }
+  button {
+    max-width: 200px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #ececec;
+    border-radius: 16px;
     margin-bottom: 8px;
+    border: 10px #444444;
   }
-  
-  label.light {
-    font-weight: 300;
-    display: inline;
-  }
-  
 
-  
+  button:hover {
+    padding: 12px 24px;
+    margin-top: 22px;
+    cursor: pointer;
+    margin-bottom: 2px;
+    box-shadow: 8px 8px  rgb(179, 179, 179);
+  }
+
+
   @media screen and (min-width: 480px) {
   
     form {

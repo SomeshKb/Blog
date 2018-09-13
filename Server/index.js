@@ -6,85 +6,19 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+var blogRoutes = require('./router/blog.router')
 
-app.get('/blog/all', function (req, res) {
-   fs.readFile( __dirname  + "/data.json", 'utf8', function (err, data) {
+app.use('/',blogRoutes);
 
-     result=JSON.parse(data);
+var userRoutes = require('./router/user.router')
 
-     blogs=( JSON.stringify(result.data));
-
-
-     res.end( blogs );
-   });
-})
+app.use('/',userRoutes);
 
 
-app.get('/blog/:id', function (req, res) {
-    fs.readFile( __dirname + "/" + "data.json", 'utf8', function (err, data) {
- 
-    result=JSON.parse(data);
-    blogs=result.data;
-            
-     res.end(JSON.stringify((blogs.filter(blog=>blog.id==req.params.id))[0]) );
-    });
- })
-
-
- app.post('/blog/like/:id', function (req, res) {
-
-        fs.readFile( __dirname + "/" + "data.json", 'utf8', function readFileCallback(err, data) {
-           
-            result=JSON.parse(data);
-            result.data=result.data.filter((blog)=>{
-             if(blog.id==req.params.id){
-               blog.likes=blog.likes+1;
-            }
-            return blog;
-            });
-
-            fs.writeFileSync(__dirname+'/data.json',JSON.stringify(result), 'utf8');  
-
-    res.end();
+//Other routes here
+app.get('*', function(req, res){
+  res.send('Sorry, this is an invalid URL.');
 });
- })
 
 
-
-
- app.post('/blog/register', function (req, res) {
-  fs.readFile( __dirname + "/" + "data.json", 'utf8', function readFileCallback(err, data) {
-           
-    result=JSON.parse(data);
-    
-    result.user.push(req.body);
-    console.log(result.user.map(x=>x));
-    fs.writeFileSync(__dirname+'/data.json',JSON.stringify(result), 'utf8');  
-
-    });
-  res.end();
-  });
-
-
-  app.get('/blog/login', function (req, res) {
-    fs.readFile( __dirname + "/" + "data.json", 'utf8', function readFileCallback(err, data) {
-             
-      result=JSON.parse(data);
-      
-      result.user.push(req.body);
-      console.log(result.user.map(x=>x));
-      fs.writeFileSync(__dirname+'/data.json',JSON.stringify(result), 'utf8');  
-  
-      });
-    res.end();
-    });
-
-
-var server = app.listen(8000, function () {
-
-  var host = server.address().address
-  var port = server.address().port
-
-  console.log("App listening at http://%s:%s", host, port)
-
-})
+app.listen(8000);

@@ -16,6 +16,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -34,6 +35,7 @@ import { SignupComponent } from './signup/signup.component';
   imports: [
     CommonModule,
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
