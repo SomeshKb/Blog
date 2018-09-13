@@ -5,11 +5,12 @@ import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'blogs', component: BlogsComponent },
+  { path: 'blogs', component: BlogsComponent,canActivate: [AuthGuardService]  },
   { path: 'register', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'blog/:id', component: BlogDetailsComponent },
