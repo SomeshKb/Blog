@@ -11,7 +11,6 @@ import { limitParagraph } from './pipe/limitParagraph.pipe';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
-
 import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from './services/authentication.service';

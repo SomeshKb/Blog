@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UserDetails,TokenResponse ,TokenPayload} from '../model/user';
@@ -9,6 +9,8 @@ import { UserDetails,TokenResponse ,TokenPayload} from '../model/user';
 @Injectable()
 export class AuthenticationService {
   private token: string;
+  public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -71,6 +73,7 @@ export class AuthenticationService {
   }
 
   public login(user: TokenPayload): Observable<any> {
+    this.isUserLoggedIn.next(true);
     return this.request('post', 'login', user);
   }
 
@@ -79,6 +82,7 @@ export class AuthenticationService {
   }
 
   public logout(): void {
+    this.isUserLoggedIn.next(false);
     this.token = '';
     window.localStorage.removeItem('mean-token');
     this.router.navigateByUrl('/');

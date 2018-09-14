@@ -1,9 +1,9 @@
 <header>
   <ul>
 
-      <li><a *ngIf="user" (click)="logoutUser()">Log-out</a></li> 
-      <li><a *ngIf="!user">LogIn</a></li> 
-      <li><p *ngIf="user">{{user.name}}</p></li> 
+      <li><a *ngIf="isUserLoggedIn" (click)="logoutUser()">Log-out</a></li> 
+      <li><a *ngIf="!isUserLoggedIn"  routerLink="/login">LogIn</a></li> 
+      <li><p *ngIf="isUserLoggedIn">{{user.name}}</p></li> 
       <li><a routerLink="/blogs">Home</a></li>
     
   </ul>   

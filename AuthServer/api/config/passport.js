@@ -21,8 +21,7 @@ passport.use(new LocalStrategy({
           message: 'Password is wrong'
         });
       }
-
-      return done()
+      // If credentials are correct, return the user object
       return done(null, user);
     });
   }

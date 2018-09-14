@@ -10,6 +10,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class HeaderComponent implements OnInit {
 
   user:UserDetails;
+  isUserLoggedIn: boolean;
   constructor(private authenticationService: AuthenticationService) {
    }
 
@@ -17,6 +18,10 @@ export class HeaderComponent implements OnInit {
     if(this.authenticationService.isLoggedIn()){
       this.getLoggedIn();      
     }      
+
+    this.authenticationService.isUserLoggedIn.subscribe( value => {
+      this.isUserLoggedIn = value;
+  });
   }
 
   getLoggedIn(){
