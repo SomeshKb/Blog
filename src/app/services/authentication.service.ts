@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UserDetails,TokenResponse ,TokenPayload} from '../model/user';
+import { Console } from '@angular/core/src/console';
 
 
 @Injectable()
@@ -41,8 +42,11 @@ export class AuthenticationService {
   public isLoggedIn(): boolean {
     const user = this.getUserDetails();
     if (user) {
+      this.isUserLoggedIn.next(true);
+      console.log(user);
       return user.exp > Date.now() / 1000;
     } else {
+      this.isUserLoggedIn.next(false);
       return false;
     }
   }
@@ -73,7 +77,7 @@ export class AuthenticationService {
   }
 
   public login(user: TokenPayload): Observable<any> {
-    this.isUserLoggedIn.next(true);
+  //  this.isUserLoggedIn.next(true);
     return this.request('post', 'login', user);
   }
 
