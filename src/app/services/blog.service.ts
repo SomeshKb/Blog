@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { Blog } from '../model/blog';
 
 
@@ -10,7 +10,8 @@ import { Blog } from '../model/blog';
 export class BlogService {
 
   private blogUrl = 'api/blog';
-  
+
+
   constructor(private http: HttpClient) { }
 
   /** GET blogs from the server */
@@ -24,10 +25,10 @@ export class BlogService {
     return this.http.get<Blog>(url);
   }
 
-  postLike(updateBlog: Blog){
-    const url =this.blogUrl+"/like/"+updateBlog._id;
+  updateLike(updateBlog: Blog){
+    const url =this.blogUrl+"/update/likes/"+updateBlog._id;
     console.log(url);
-    return this.http.post(url,updateBlog);
+    return this.http.get<Blog>(url);
   }
 
 }

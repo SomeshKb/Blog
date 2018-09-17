@@ -19,6 +19,9 @@ router.post('/login', ctrlAuth.login);
 
 router.post('/blog', ctrlblog.create);
 
+router.get('/blog/update/likes/:_id', ctrlblog.updateLike);
+
+
 router.get('/blog/all', ctrlblog.findAll);
 
 router.get('/blog/:_id', ctrlblog.findOne);

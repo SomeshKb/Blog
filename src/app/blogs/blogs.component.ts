@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { Blog } from '../model/blog';
 import { BlogService } from 'src/app/Services/blog.service';
 import { EventEmitter } from '@angular/core';
@@ -6,7 +6,7 @@ import { EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-blogs',
   templateUrl: './blogs.component.html',
-  styleUrls: ['./blogs.component.css']
+  styleUrls: ['./blogs.component.css'],
 })
 export class BlogsComponent implements OnInit {
 
@@ -28,6 +28,5 @@ export class BlogsComponent implements OnInit {
 
   onSelect(blog: Blog): void {
     this.selectedBlog = blog;
-    console.log(blog);
   }
 }
