@@ -13,16 +13,16 @@ export class BlogDetailsComponent implements OnInit {
   @Input() selectedBlog: Blog;
 
   blog: Blog;
-  id: number;
+  
   constructor(private blogService: BlogService , private route: ActivatedRoute
     , private router: Router) { }
     
   ngOnInit() {
-    this.id = +this.route.snapshot.paramMap.get('id');
-    this.getBlogDetail(this.id);
+    let id:string= this.route.snapshot.paramMap.get('id');
+    this.getBlogDetail(id);
   }
 
-  getBlogDetail(id: number): void {
+  getBlogDetail(id: string): void {
     this.blogService.getBlog(id)
     .subscribe(blog => this.blog = blog);
   }

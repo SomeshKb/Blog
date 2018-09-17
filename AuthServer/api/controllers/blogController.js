@@ -48,7 +48,8 @@ exports.findAll = (req, res) => {
 // Find a single blog
 exports.findOne = (req, res) => {
     Blog.findOne({
-            ' _id': req.params._id
+            '_id': req.params._id
+            
         }) // search by id
         .then(blog => {
             res.send(blog);

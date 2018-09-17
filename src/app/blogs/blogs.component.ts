@@ -3,7 +3,6 @@ import { Blog } from '../model/blog';
 import { BlogService } from 'src/app/Services/blog.service';
 import { EventEmitter } from '@angular/core';
 
-
 @Component({
   selector: 'app-blogs',
   templateUrl: './blogs.component.html',

@@ -19,13 +19,13 @@ export class BlogService {
     return this.http.get<Blog[]>(url);
   }
 
-  getBlog(id: number): Observable<Blog> {
-    const url = `${this.blogUrl}/${id}`;``
+  getBlog(id: string): Observable<Blog> {
+    const url = `${this.blogUrl}/${id}`;
     return this.http.get<Blog>(url);
   }
 
   postLike(updateBlog: Blog){
-    const url =this.blogUrl+"/like/"+updateBlog.id;
+    const url =this.blogUrl+"/like/"+updateBlog._id;
     console.log(url);
     return this.http.post(url,updateBlog);
   }
