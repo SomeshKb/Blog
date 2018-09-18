@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { Blog } from '../model/blog';
+import { UserDetails } from '../model/User';
 
 
 @Injectable({
@@ -25,10 +26,10 @@ export class BlogService {
     return this.http.get<Blog>(url);
   }
 
-  updateLike(updateBlog: Blog){
+  updateLike(updateBlog: Blog,user:UserDetails){
     const url =this.blogUrl+"/update/likes/"+updateBlog._id;
     console.log(url);
-    return this.http.get<Blog>(url);
+    return this.http.put(url,user);
   }
 
 }

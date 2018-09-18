@@ -68,14 +68,14 @@ exports.findOne = (req, res) => {
 //db.blogs.updateOne({title:"StackOverFlow "},{$inc:{likes:1}});
 
 exports.updateLike = (req, res) => {
-  //console.log(req.body.userID);
+  console.log(req);
 
   Blog.updateOne({
       '_id': req.params._id
     }, {
-      $inc:{"like.count":1},$push:{"like.users":req.body.userID}
+      $inc:{"like.count":1},$push:{"like.users":req.body._id}
     })
-    .then(res.send(blog=>blog))
+    .then(res.send())
 
   // Blog.update({
   //     '_id': req.params._id

@@ -5,6 +5,7 @@ import { ActivatedRoute,Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { SimpleChanges } from '@angular/core';
 import { mergeMap } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-blog-details',
@@ -20,7 +21,7 @@ export class BlogDetailsComponent implements OnInit  {
 
   
   constructor(private blogService: BlogService , private route: ActivatedRoute
-    , private router: Router) { }
+    , private router: Router,private auth:AuthenticationService) { }
     
   ngOnInit() {
     let id:string= this.route.snapshot.paramMap.get('id');
@@ -28,7 +29,7 @@ export class BlogDetailsComponent implements OnInit  {
   }
 
   hitLike(): void{
-    this.blogService.updateLike(this.blog)
+    this.blogService.updateLike(this.blog,this.auth.getUserDetails())
     .subscribe();
     this.getBlogDetail(this.blog._id);
   }
