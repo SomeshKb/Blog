@@ -3,6 +3,7 @@ export class Blog {
     title: string;
     author: string;
     published_date: string;
-    likes: number;
+    like: { count:number ,
+            users:Array<string>};
     content: string;
 }

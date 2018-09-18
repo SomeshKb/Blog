@@ -1,10 +1,7 @@
-import {Blog} from './../model/blog';
-import { Component, OnInit, Input, ChangeDetectionStrategy, OnChanges } from '@angular/core';
+import { Blog } from './../model/blog';
+import { Component, OnInit, Input } from '@angular/core';
 import { BlogService } from '../Services/blog.service';
-import { ActivatedRoute,Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { SimpleChanges } from '@angular/core';
-import { mergeMap } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -12,35 +9,43 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   templateUrl: './blog-details.component.html',
   styleUrls: ['./blog-details.component.css'],
 })
-export class BlogDetailsComponent implements OnInit  {
- 
+export class BlogDetailsComponent implements OnInit {
+
 
   @Input() selectedBlog: Blog;
   blog: Blog;
 
 
-  
-  constructor(private blogService: BlogService , private route: ActivatedRoute
-    , private router: Router,private auth:AuthenticationService) { }
-    
+  constructor(private blogService: BlogService, private route: ActivatedRoute
+    , private router: Router, private auth: AuthenticationService) { }
+
   ngOnInit() {
-    let id:string= this.route.snapshot.paramMap.get('id');
+    let id: string = this.route.snapshot.paramMap.get('id');
     this.getBlogDetail(id);
   }
 
-  hitLike(): void{
-    this.blogService.updateLike(this.blog,this.auth.getUserDetails())
-    .subscribe();
-    this.getBlogDetail(this.blog._id);
+  checkIfLiked() {
+    let isLiked;
+    let currentUser = this.auth.getUserDetails()._id;
+    this.blog.like.users.map(user => {
+      if (user === currentUser) {
+        isLiked = true;
+      }
+      else { isLiked = false; }
+    })
+    return isLiked;
   }
-   
+
+  hitLike(): void {
+
+    this.blogService.updateLike(this.blog, this.auth.getUserDetails())
+      .subscribe();
+    this.getBlogDetail(this.blog._id);
+
+  }
 
   getBlogDetail(id: string): void {
     this.blogService.getBlog(id)
-    .subscribe(blog =>this.blog = blog);
-   
+      .subscribe(blog => this.blog = blog);
   }
-
-
-
 }

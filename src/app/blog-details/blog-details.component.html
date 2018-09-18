@@ -6,7 +6,7 @@
       <span id="author">written by: {{blog.author}} </span>
       
       <span id="publishDate">on {{blog.published_date}}   </span>
-      <button (click)="hitLike()" >Like</button>{{blog.like.count}}
+      <button [disabled]="checkIfLiked()"  (click)="hitLike()" > Like </button><div class="count">Liked By:{{blog.like.count}}</div>
 
   </div>
 
