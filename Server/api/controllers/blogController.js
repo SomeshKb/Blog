@@ -68,23 +68,31 @@ exports.findOne = (req, res) => {
 //db.blogs.updateOne({title:"StackOverFlow "},{$inc:{likes:1}});
 
 exports.updateLike = (req, res) => {
-  
-  Blog.update({
+  //console.log(req.body.userID);
+
+  Blog.updateOne({
       '_id': req.params._id
     }, {
-      $inc: {
-        likes: 1
-      }
+      $inc:{"like.count":1},$push:{"like.users":req.body.userID}
     })
-    .then(blog=>res.send(blog))
-    .catch(err => {
-      if (err.kind === 'ObjectId') {
-        return res.status(404).send({
-          message: "Blog not found  " + req.params._id
-        });
-      }
-      return res.status(500).send({
-        message: "Error while retrieving blog " + req.params._id
-      });
-    });
+    .then(res.send(blog=>blog))
+
+  // Blog.update({
+  //     '_id': req.params._id
+  //   }, {
+  //     $inc: {
+  //       likes: 1
+  //     }
+  //   })
+  //   .then(blog=>res.send(blog))
+  //   .catch(err => {
+  //     if (err.kind === 'ObjectId') {
+  //       return res.status(404).send({
+  //         message: "Blog not found  " + req.params._id
+  //       });
+  //     }
+  //     return res.status(500).send({
+  //       message: "Error while retrieving blog " + req.params._id
+  //     });
+  //   });
 };
