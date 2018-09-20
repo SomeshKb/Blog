@@ -65,7 +65,6 @@ exports.findOne = (req, res) => {
     });
 };
 
-//db.blogs.updateOne({title:"StackOverFlow "},{$inc:{likes:1}});
 
 exports.updateLike = (req, res) => {
   console.log(req);
@@ -73,9 +72,24 @@ exports.updateLike = (req, res) => {
   Blog.updateOne({
       '_id': req.params._id
     }, {
-      $inc:{"like.count":1},$push:{"like.users":req.body._id}
+      $inc: {
+        "like.count": 1
+      },
+      $push: {
+        "like.users": req.body._id
+      }
     })
     .then(res.send())
+    .catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: "Blog not found  " + req.params._id
+        });
+      }
+      return res.status(500).send({
+        message: "Error while retrieving blog " + req.params._id
+      });
+    });
 
   // Blog.update({
   //     '_id': req.params._id
