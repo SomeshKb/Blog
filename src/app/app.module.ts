@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { LoginComponent } from './login/login.component';
+import { CreateBlogComponent } from './create-blog/create-blog.component';
 
 
 
@@ -29,7 +30,8 @@ import { LoginComponent } from './login/login.component';
     FooterComponent,
     NotFoundComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    CreateBlogComponent
   ],
   imports: [
     CommonModule,

@@ -20,6 +20,7 @@ router.post('/login', ctrlAuth.login);
 router.post('/blog', ctrlblog.create);
 
 router.put('/blog/update/likes/:_id', ctrlblog.updateLike);
+router.post('/blog/create', ctrlblog.create);
 
 
 router.get('/blog/all', ctrlblog.findAll);

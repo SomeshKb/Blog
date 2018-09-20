@@ -1,0 +1,16 @@
+<form #blogForm="ngForm" (ngSubmit)="blogForm.valid && onSubmit(blogForm)">
+    <input type="text" #name="ngModel" [(ngModel)]="blog.title" name="title" placeholder="Title"  required minlength="6" [ngClass]="{'invalid-textbox' :blogForm.submitted && !name.valid}">
+
+    <div *ngIf="blogForm.submitted && !name.valid">
+        <label class="validation-message">This field is required.(Minimum Length=6)</label>
+      </div>
+    <textarea rows=10 #content="ngModel" type="text" [(ngModel)]="blog.content" name="content" placeholder="Content"  required minlength="40" ></textarea>
+
+    
+    <div *ngIf="blogForm.submitted && !name.valid">
+        <label class="validation-message">This field is required.(Minimum Length=40)</label>
+      </div>
+    <input type="submit" value="CreateBlog">
+  </form>
+  
+  

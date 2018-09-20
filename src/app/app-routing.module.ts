@@ -6,6 +6,7 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { CreateBlogComponent } from 'src/app/create-blog/create-blog.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'register', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'blog/:id', component: BlogDetailsComponent },
- // { path: '**', component: NotFoundComponent }
+  { path: 'create', component: CreateBlogComponent },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

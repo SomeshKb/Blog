@@ -28,8 +28,14 @@ export class BlogService {
 
   updateLike(updateBlog: Blog,user:UserDetails){
     const url =this.blogUrl+"/update/likes/"+updateBlog._id;
-    console.log(url);
     return this.http.put(url,user);
   }
+
+  createBlog(blog:Blog){
+
+    const url=this.blogUrl+"/create";
+    return this.http.post(url,blog);
+  }
+
 
 }

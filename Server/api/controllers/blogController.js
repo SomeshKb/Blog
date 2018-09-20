@@ -2,14 +2,8 @@ var mongoose = require("mongoose")
 var Blog = mongoose.model("blogs")
 
 exports.create = (req, res) => {
-
-  if (!req.body.title || !req.body.author || !req.body.likes ||
-    !req.body.content || !req.body.published_date) {
-
-    return res.status(400).send({
-      message: "Get all the Input Field"
-    });
-  }
+  console.log(req);
+  
   const blog = new Blog({
     title: req.body.title,
     author: req.body.author,
@@ -65,9 +59,7 @@ exports.findOne = (req, res) => {
     });
 };
 
-
 exports.updateLike = (req, res) => {
-  console.log(req);
 
   Blog.updateOne({
       '_id': req.params._id
@@ -90,23 +82,4 @@ exports.updateLike = (req, res) => {
         message: "Error while retrieving blog " + req.params._id
       });
     });
-
-  // Blog.update({
-  //     '_id': req.params._id
-  //   }, {
-  //     $inc: {
-  //       likes: 1
-  //     }
-  //   })
-  //   .then(blog=>res.send(blog))
-  //   .catch(err => {
-  //     if (err.kind === 'ObjectId') {
-  //       return res.status(404).send({
-  //         message: "Blog not found  " + req.params._id
-  //       });
-  //     }
-  //     return res.status(500).send({
-  //       message: "Error while retrieving blog " + req.params._id
-  //     });
-  //   });
 };
