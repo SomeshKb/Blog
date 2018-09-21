@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     if(this.auth.isLoggedIn()){
       this.router.navigateByUrl('/blogs');
+      
     }
   }
 
@@ -36,6 +37,8 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth.login(this.credentials).subscribe(() => {
+      this.auth.isUserLoggedIn.next(true);
+
       this.router.navigateByUrl('/blogs');
     }, (err) => {
       console.error(err);

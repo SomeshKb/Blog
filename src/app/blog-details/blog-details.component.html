@@ -6,7 +6,8 @@
       <span id="author">written by: {{blog.author}} </span>
       
       <span id="publishDate">on {{blog.published_date}}   </span>
-      <button [disabled]="checkIfLiked()"  (click)="hitLike()" > Like </button><div class="count">Liked By:{{blog.like.count}}</div>
+      <button [disabled]="checkIfLiked()"  (click)="hitLike()" > Like </button>
+      <div class="count" *ngIf="!blog.like.count==0">Liked By:{{blog.like.count}}</div>
 
   </div>
 

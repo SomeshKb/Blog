@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Blog } from '../model/blog';
 import { AuthenticationService } from '../services/authentication.service';
 import { BlogService } from 'src/app/Services/blog.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-blog',
@@ -18,7 +19,7 @@ published_date:"",
 like:{count:0,users:[]},
 author:""};
 
-  constructor(private auth:AuthenticationService,private blogService:BlogService) { }
+  constructor(private auth:AuthenticationService,private blogService:BlogService,private router:Router) { }
 
   ngOnInit() {
   }
@@ -29,5 +30,6 @@ author:""};
     this.blog.author=this.auth.getUserDetails().name;
     this.blog.like= {count:0,users:[]}
     this.blogService.createBlog(this.blog).subscribe();
+    this.router.navigateByUrl("/blogs")
   }
 }

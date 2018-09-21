@@ -15,12 +15,13 @@ export class BlogsComponent implements OnInit {
   selectedBlog: Blog;
 
   constructor(private blogService: BlogService,private auth:AuthenticationService) {
-
+    if(auth.isLoggedIn()){
+      this.auth.isUserLoggedIn.next(true);
+    }
   }
 
   ngOnInit() {
     this.getBlogs();
-    this.auth.isUserLoggedIn.next(true);
   }
 
   getBlogs(): void {

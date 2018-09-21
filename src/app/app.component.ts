@@ -8,6 +8,8 @@ import { AuthenticationService } from './services/authentication.service';
 })
 export class AppComponent {
   title = 'Blog';
-  constructor(public auth: AuthenticationService) {}
+  constructor(private auth: AuthenticationService){
+  
+  }
 
 }
