@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { UserDetails } from '../../model/User';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -9,27 +9,26 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class HeaderComponent implements OnInit {
 
-  user:UserDetails;
+  user: UserDetails;
   isUserLoggedIn: boolean;
+
   constructor(private authenticationService: AuthenticationService) {
-   }
+    this.authenticationService.isUserLoggedIn.subscribe(value => {
+        this.user = this.authenticationService.getUserDetails();
+        this.isUserLoggedIn = value;
+      
+    });
+  }
 
   ngOnInit() {
-    console.log(this.authenticationService.isLoggedIn());
-    
-    if(this.authenticationService.isLoggedIn()){
-      this.authenticationService.isUserLoggedIn.subscribe( value => {
-        this.user=this.authenticationService.getUserDetails();
-        this.isUserLoggedIn = value;
-    }); 
-    } 
+
   }
 
 
-  logoutUser(){
+  logoutUser() {
     this.authenticationService.isUserLoggedIn.next(false);
     this.authenticationService.logout();
 
   }
-  
+
 }
