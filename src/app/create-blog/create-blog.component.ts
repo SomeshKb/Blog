@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Blog } from '../model/blog';
-import { AuthenticationService } from '../services/authentication.service';
 import { BlogService } from 'src/app/Services/blog.service';
+import { AuthenticationService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-create-blog',

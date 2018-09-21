@@ -2,7 +2,7 @@ import { Blog } from './../model/blog';
 import { Component, OnInit, Input } from '@angular/core';
 import { BlogService } from '../Services/blog.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-blog-details',

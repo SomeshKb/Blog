@@ -13,10 +13,17 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
-import { AuthenticationService } from './services/authentication.service';
-import { AuthGuardService } from './services/auth-guard.service';
-import { LoginComponent } from './login/login.component';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthenticationService } from 'src/app/auth/auth.service';
+import { AuthGuardService } from './auth/auth.guard';
+import { AuthModule } from './auth/auth.module';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers/index';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { EffectsModule } from '@ngrx/effects';
+import { environment } from '../environments/environment';
 
 
 
@@ -29,7 +36,6 @@ import { CreateBlogComponent } from './create-blog/create-blog.component';
     HeaderComponent,
     FooterComponent,
     NotFoundComponent,
-    LoginComponent,
     SignupComponent,
     CreateBlogComponent
   ],
@@ -38,7 +44,13 @@ import { CreateBlogComponent } from './create-blog/create-blog.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule  ],
+    AppRoutingModule ,
+    AuthModule.forRoot(),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot({stateKey: ' router'})
+   ],
   providers: [BlogService,AuthenticationService,AuthGuardService],
   bootstrap: [AppComponent]
 })

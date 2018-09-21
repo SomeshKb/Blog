@@ -4,9 +4,9 @@ import { BlogsComponent } from './blogs/blogs.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { SignupComponent } from './signup/signup.component';
-import { LoginComponent } from './login/login.component';
-import { AuthGuardService } from './services/auth-guard.service';
 import { CreateBlogComponent } from 'src/app/create-blog/create-blog.component';
+import { AuthGuardService } from './auth/auth.guard';
+import { LoginComponent } from './auth/login/login.component';
 
 
 const routes: Routes = [

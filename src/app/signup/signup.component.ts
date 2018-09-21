@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BlogService } from 'src/app/Services/blog.service';
 import { TokenPayload } from '../model/user';
-import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-signup',

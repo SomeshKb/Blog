@@ -2,7 +2,7 @@ import { Component, OnInit, Output, ChangeDetectionStrategy } from '@angular/cor
 import { Blog } from '../model/blog';
 import { BlogService } from 'src/app/Services/blog.service';
 import { EventEmitter } from '@angular/core';
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthenticationService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-blogs',
@@ -20,7 +20,6 @@ export class BlogsComponent implements OnInit {
 
   ngOnInit() {
     this.getBlogs();
-    this.auth.isUserLoggedIn.next(true);
   }
 
   getBlogs(): void {

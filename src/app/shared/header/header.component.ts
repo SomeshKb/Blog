@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDetails } from '../../model/User';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from '../../auth/auth.service';
+import { AppState } from 'src/app/reducers';
+import { Store } from '@ngrx/store';
+import { Login } from '../../auth/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -11,18 +14,12 @@ export class HeaderComponent implements OnInit {
 
   user:UserDetails;
   isUserLoggedIn: boolean;
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService,private store:Store<AppState>) {
    }
 
   ngOnInit() {
     if(this.authenticationService.isLoggedIn()){
-      this.getLoggedIn();     
-      this.authenticationService.isUserLoggedIn.subscribe( value => {
-        this.isUserLoggedIn = value;
-    }); 
     }      
-
- 
   }
 
   getLoggedIn(){
@@ -32,8 +29,4 @@ export class HeaderComponent implements OnInit {
   logoutUser(){
     this.authenticationService.logout();
   }
-  
-  
-
-
 }

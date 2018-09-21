@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenPayload, UserDetails } from '../model/user';
-import { BlogService } from '../services/blog.service';
 import { NgForm } from '@angular/forms';
-import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import { TokenPayload, UserDetails, TokenResponse } from '../../model/User';
+import { AuthenticationService } from '../auth.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../reducers/index';
+import { tap } from 'rxjs/operators';
+import { Login } from '../auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -20,9 +23,9 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   };
-  user: UserDetails;
+  user: TokenResponse;
   
-  constructor(private auth:AuthenticationService,private router: Router) { }
+  constructor(private auth:AuthenticationService,private router: Router,private store: Store<AppState>) { }
 
   ngOnInit() {
     if(this.auth.isLoggedIn()){
@@ -35,8 +38,13 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.auth.login(this.credentials).subscribe(() => {
+    this.auth.login(this.credentials).pipe(tap(user=>{
+
+      this.store.dispatch(new Login({user}));
+
       this.router.navigateByUrl('/blogs');
+    })
+  ).subscribe(() => {   
     }, (err) => {
       console.error(err);
     });
@@ -51,7 +59,7 @@ export class LoginComponent implements OnInit {
   }
 
   getDetails(){
-      this.user = this.auth.getUserDetails();
+     // this.user = this.auth.getUserDetails();
   }
 
 }
