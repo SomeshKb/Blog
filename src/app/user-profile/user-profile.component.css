@@ -2,12 +2,11 @@ dl{
 
     max-width: 400px;
     margin: 10px auto;
+    margin-top: 30px;
     padding: 10px 20px;
     background: #ececec;
     border-radius: 16px;
-    border: 10px #444444;
-    box-shadow: 8px 8px  rgb(179, 179, 179);
-      
+   
 }
 
 h3{
@@ -36,4 +35,8 @@ dd{
     color: #353535;
     padding-left: 10px;
     padding-bottom: 10px;
+}
+
+.container{
+    min-height: 71vh;
 }

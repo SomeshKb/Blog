@@ -29,7 +29,7 @@ export class UserProfileComponent implements OnInit {
     this.blogService.getUserLikesCount(this.user.name)
     .subscribe(result=>{
        result=JSON.stringify(result);
-      console.log(JSON.parse(result).count);
+      // console.log(JSON.parse(result).count);
       });
   }
 
