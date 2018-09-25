@@ -1,6 +1,7 @@
 var mongoose = require("mongoose")
 var Blog = mongoose.model("blogs")
 
+
 exports.create = (req, res) => {
   console.log(req);
   
@@ -82,4 +83,25 @@ exports.updateLike = (req, res) => {
         message: "Error while retrieving blog " + req.params._id
       });
     });
+
+
 };
+
+
+// find likes per user
+exports.findUserLikes = (req, res) => {
+  
+  // db.blogs.aggregate([{'$match':{'author':'Somesh'}}, {'$group':{"_id":"","count":{$sum:"$like.count"}}}, {'$project':{count:1,_id:0}}])
+  Blog.aggregate({'$match':{'author':req.params.id}}, {'$group':{"_id":"","count":{$sum:"$like.count"}}}, {'$project':{count:1,_id:0}})  
+  .then(result=>{ res.send(result[0])})
+  .catch(err => {
+    if (err.kind === 'ObjectId') {
+      return res.status(404).send({
+        message: "Not found  " + req.params.id
+      });
+    }
+    return res.status(500).send({
+      message: "Error while retrieving Data " + req.params.id
+    });
+  });
+  }

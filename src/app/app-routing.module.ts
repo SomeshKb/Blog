@@ -7,6 +7,8 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { CreateBlogComponent } from 'src/app/create-blog/create-blog.component';
+import { UserDetails } from './model/User';
+import { UserProfileComponent } from 'src/app/user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -16,6 +18,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'blog/:id', component: BlogDetailsComponent },
   { path: 'create', component: CreateBlogComponent },
+  { path: 'profile', component: UserProfileComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

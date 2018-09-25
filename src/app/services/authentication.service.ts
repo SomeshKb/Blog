@@ -11,7 +11,7 @@ import { Console } from '@angular/core/src/console';
 export class AuthenticationService {
   private token: string;
   
-  public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   // public isUserLoggedIn: Subject<Boolean> = new Subject<Boolean>();
 
 
@@ -49,8 +49,8 @@ export class AuthenticationService {
     const user = this.getUserDetails();
     
     if (user) {
-      console.log(user);
-      this.isUserLoggedIn.next(true);
+      //console.log(user);
+     // this.isUserLoggedIn.next(true);
       return user.exp > Date.now() / 1000;
     } else {
       return false;

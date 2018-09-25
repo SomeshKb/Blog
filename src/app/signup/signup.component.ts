@@ -35,8 +35,13 @@ export class SignupComponent implements OnInit {
 
   register() {
     this.auth.register(this.credentials).subscribe(() => {
+      alert("User Created")
+      this.router.navigateByUrl('/blogs');
     }, (err) => {
-      console.error(err);
+      if(err.status==409){
+        alert(err.error.message);
+        console.log(err.error.message);
+      }
     });
   }
 

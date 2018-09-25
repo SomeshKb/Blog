@@ -24,6 +24,7 @@ router.post('/blog/create', ctrlblog.create);
 
 
 router.get('/blog/all', ctrlblog.findAll);
+router.get('/blog/user/likes/:id', ctrlblog.findUserLikes);
 
 router.get('/blog/:_id', ctrlblog.findOne);
 

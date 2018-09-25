@@ -17,7 +17,11 @@ export class BlogDetailsComponent implements OnInit {
 
 
   constructor(private blogService: BlogService, private route: ActivatedRoute
-    , private router: Router, private auth: AuthenticationService) { }
+    , private router: Router, private auth: AuthenticationService) {
+      if(auth.isLoggedIn()){
+        this.auth.isUserLoggedIn.next(true);
+      }
+     }
 
   ngOnInit() {
     let id: string = this.route.snapshot.paramMap.get('id');

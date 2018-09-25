@@ -19,7 +19,11 @@ published_date:"",
 like:{count:0,users:[]},
 author:""};
 
-  constructor(private auth:AuthenticationService,private blogService:BlogService,private router:Router) { }
+  constructor(private auth:AuthenticationService,private blogService:BlogService,private router:Router) {
+    if(auth.isLoggedIn()){
+    this.auth.isUserLoggedIn.next(true);
+    }
+  }
 
   ngOnInit() {
   }

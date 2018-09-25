@@ -17,6 +17,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { LoginComponent } from './login/login.component';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 
@@ -31,7 +32,8 @@ import { CreateBlogComponent } from './create-blog/create-blog.component';
     NotFoundComponent,
     LoginComponent,
     SignupComponent,
-    CreateBlogComponent
+    CreateBlogComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,

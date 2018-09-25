@@ -36,13 +36,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.auth.isUserLoggedIn.next(true);
 
     this.auth.login(this.credentials).subscribe(() => {
-
+     this.auth.isUserLoggedIn.next(true);
       this.router.navigateByUrl('/blogs');
     }, (err) => {
-      console.error(err);
+      if(err.status===401){
+        alert('Invalid Credentials');
+      }
+      console.log(err);
     });
   }
 

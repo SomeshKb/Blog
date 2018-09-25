@@ -19,19 +19,29 @@ module.exports.register = function(req, res) {
   var user = new User();
 
   user.name = req.body.name;
-  user.email = req.body.email;
+  user.email = req.body.email; 
 
   user.setPassword(req.body.password);
 
-  user.save(function(err) {
-    var token;
-    token = user.generateJwt();
-    res.status(200);
-    res.json({
-      "token" : token
-    });
+  User.find({email:user.email}).count().then(result=>{
+    if(result==0){
+              user.save(function(err) {
+              var token;
+              token = user.generateJwt();
+              res.status(200);
+              res.json({
+                "token" : token
+              });
+            });
+          } else {
+            res.status(409).send({
+              message: "Email Already exists"
+            });
+          }
   });
 
+
+  
 };
 
 module.exports.login = function(req, res) {
