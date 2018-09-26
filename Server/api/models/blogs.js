@@ -6,7 +6,11 @@ var blogSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  author: {
+  authorID: {
+    type: String,
+    required: true
+  },
+  authorName: {
     type: String,
     required: true
   },

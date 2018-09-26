@@ -37,10 +37,13 @@ export class BlogService {
     return this.http.post(url,blog);
   }
 
-  getUserLikesCount(userID:string):Observable<string>{
-    const url=this.blogUrl+"/user/likes/"+userID;
-    return this.http.get<string>(url);
+  removeBlog(blog:Blog){
+
+    const url=this.blogUrl+"/remove/"+blog._id;
+    return this.http.delete(url);
   }
+
+
 
 
 }

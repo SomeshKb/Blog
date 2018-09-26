@@ -18,6 +18,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { LoginComponent } from './login/login.component';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserService } from 'src/app/services/user.service';
 
 
 
@@ -41,7 +42,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     FormsModule,
     HttpClientModule,
     AppRoutingModule  ],
-  providers: [BlogService,AuthenticationService,AuthGuardService],
+  providers: [BlogService,AuthenticationService,AuthGuardService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

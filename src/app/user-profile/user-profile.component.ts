@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserDetails } from '../model/User';
 import { AuthenticationService } from '../services/authentication.service';
 import { BlogService } from 'src/app/Services/blog.service';
+import { UserService } from 'src/app/services/user.service';
+import { Blog } from '../model/blog';
 
 
 @Component({
@@ -12,7 +14,10 @@ import { BlogService } from 'src/app/Services/blog.service';
 export class UserProfileComponent implements OnInit {
 
   user: UserDetails;
-  constructor(private blogService:BlogService,private authenticationService: AuthenticationService) { 
+
+  blog:Blog[];
+
+  constructor(private blogService:BlogService,private authenticationService: AuthenticationService,private userService: UserService) { 
     if(authenticationService.isLoggedIn()){
       this.authenticationService.isUserLoggedIn.next(true);
     }
@@ -21,16 +26,25 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
       this.user=this.authenticationService.getUserDetails();
       if(this.user){
-        this.getTotalLikes();
+        this.getUserBlogs();
       }
   }
 
   getTotalLikes(): void {
-    this.blogService.getUserLikesCount(this.user.name)
+    this.userService.getUserLikesCount(this.user.name)
     .subscribe(result=>{
        result=JSON.stringify(result);
-      // console.log(JSON.parse(result).count);
       });
   }
+
+  getUserBlogs(): void{
+    
+    this.userService.getUserBlogs(this.user._id)
+    .subscribe(result=>{
+      this.blog=result
+    });
+  }
+
+  
 
 }

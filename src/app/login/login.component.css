@@ -8,10 +8,10 @@ form {
   max-width: 300px;
   margin: 40px auto;
   padding: 10px 20px;
-  background: #ececec;
+  background:  linear-gradient(150deg,#ebebeb,#a8a8a8,#757575);
   border-radius: 16px;
   border: 10px #444444;
-  box-shadow: 8px 8px  rgb(179, 179, 179);
+  box-shadow: 8px 8px  rgb(78, 77, 77);
 }
  
 input[type="text"],
@@ -48,6 +48,8 @@ input[type="submit"]:hover {
   cursor: pointer;
   box-shadow: 6px 6px rgb(0, 0, 0);
   background-color: #444444;
+  transform: scale(1.05,1.05);
+
 }
 
 .signUp{

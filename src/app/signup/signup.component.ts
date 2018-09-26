@@ -40,7 +40,6 @@ export class SignupComponent implements OnInit {
     }, (err) => {
       if(err.status==409){
         alert(err.error.message);
-        console.log(err.error.message);
       }
     });
   }

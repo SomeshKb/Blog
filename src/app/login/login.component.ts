@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
       if(err.status===401){
         alert('Invalid Credentials');
       }
-      console.log(err);
     });
   }
 

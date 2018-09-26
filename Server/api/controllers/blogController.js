@@ -3,15 +3,18 @@ var Blog = mongoose.model("blogs")
 
 
 exports.create = (req, res) => {
-  console.log(req);
+  
   
   const blog = new Blog({
     title: req.body.title,
-    author: req.body.author,
+    authorName: req.body.authorName,
+    authorID: req.body.authorID,
     likes: req.body.likes,
     content: req.body.content,
     published_date: req.body.published_date,
   });
+
+ 
 
   blog.save()
     .then(data => {
@@ -33,7 +36,7 @@ exports.findAll = (req, res) => {
       res.send(blog);
     }).catch(err => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving student record."
+        message: err.message || "Some error occurred while retrieving blog record."
       });
     });
 
@@ -105,3 +108,20 @@ exports.findUserLikes = (req, res) => {
     });
   });
   }
+
+
+  exports.deletePost = (req,res)=>{
+    Blog.deleteOne({_id:req.params.id})
+    .then(result=>{res.send("Record deleted")})
+    .catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: "Not found  " + req.params.id
+        });
+      }
+      return res.status(500).send({
+        message: "Error while retrieving Data " + req.params.id
+      });
+    });
+    }
+

@@ -5,6 +5,18 @@
   <dd>{{user.name}}</dd>
   <dt>Email:</dt>
   <dd>{{user.email}}</dd>
-
 </dl>
+
+
+
+<div class="blog" *ngIf="blog">
+
+  <h2>Your Blogs</h2>
+
+  <dl *ngFor="let item of blog" >
+    <dt routerLink="/blog/{{item._id}}">{{item.title}}</dt>
+</dl>
+</div>
+
+
 </div>

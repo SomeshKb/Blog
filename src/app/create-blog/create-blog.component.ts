@@ -17,7 +17,8 @@ export class CreateBlogComponent implements OnInit {
 content:"",
 published_date:"",
 like:{count:0,users:[]},
-author:""};
+authorID:"",
+authorName:""};
 
   constructor(private auth:AuthenticationService,private blogService:BlogService,private router:Router) {
     if(auth.isLoggedIn()){
@@ -29,9 +30,9 @@ author:""};
   }
   onSubmit(form: NgForm) {
     var today = new Date();
-    console.log(today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear());
     this.blog.published_date=(today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear()).toString();
-    this.blog.author=this.auth.getUserDetails().name;
+    this.blog.authorID=this.auth.getUserDetails()._id;
+    this.blog.authorName=this.auth.getUserDetails().name;
     this.blog.like= {count:0,users:[]}
     this.blogService.createBlog(this.blog).subscribe();
     this.router.navigateByUrl("/blogs")
