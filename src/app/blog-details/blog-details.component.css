@@ -27,7 +27,6 @@
     box-shadow: 12px 12px rgb(0, 0, 0);
 }
 
-
 .main{
 margin: auto;
 width: 60%;
@@ -49,4 +48,20 @@ padding: 20px;
     padding: 10px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 15px;
+}
+
+
+a {
+    size: 20px;
+    padding: 5px;
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+a:hover {
+
+    color: rgb(126, 126, 126);
+    text-transform: scale(1.6,1.6)
 }

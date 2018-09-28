@@ -22,7 +22,7 @@ module.exports.profileRead = function(req, res) {
 module.exports.authorName = function(req,res){
 
   
-  User.findOne({_id:req.params.id},{_id:0,name:1})
+  User.findOne({_id:req.params.id},{_id:1,name:1,email:1})
   .then(result=>{res.send(result)})
   .catch(err => {
     if (err.kind === 'ObjectId') {

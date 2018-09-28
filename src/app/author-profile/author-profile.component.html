@@ -1,0 +1,21 @@
+<div class="container"> 
+  <dl *ngIf="author">
+  <h3>Author</h3>
+  <dt>Name:</dt>
+  <dd>{{author.name}}</dd>
+  <dt>Email:</dt>
+  <dd>{{author.email}}</dd>
+</dl>
+
+
+<div class="blog" *ngIf="blog">
+
+  <h2>Author's Blogs</h2>
+
+  <dl *ngFor="let item of blog" >
+    <dt routerLink="/blog/{{item._id}}">{{item.title}}</dt>
+</dl>
+</div>
+
+
+</div>

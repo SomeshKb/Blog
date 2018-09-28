@@ -3,15 +3,13 @@
     <span id="title">{{blog.title}}</span>
   </div>
   <div class="miniHeading" > 
-      <span id="author">written by: {{blog.authorName}} </span>
+      <span id="author">written by: <a routerLink="/profile/author/{{blog.authorID}}"  >{{blog.authorName}}</a> </span>
       
       <span id="publishDate">on {{blog.published_date}}   </span>
       <button [disabled]="checkIfLiked()"  (click)="hitLike()" > Like </button>
       <div class="count" *ngIf="!blog.like.count==0">Liked By:{{blog.like.count}}</div>
       <button *ngIf="checkIfOwner()" (click)="removePost()" > Delete </button>
-      
-
-
+    
   </div>
 
   <div class="main" [innerHTML]="blog.content" ></div>
