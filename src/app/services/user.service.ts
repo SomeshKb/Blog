@@ -12,9 +12,9 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getUserLikesCount(userID:string):Observable<string>{
+  getUserLikesCount(userID:string):Observable<JSON>{
     const url="api/user/likes/"+userID;
-    return this.http.get<string>(url);
+    return this.http.get<JSON>(url);
   }
 
   getAuthorName(userID:string):Observable<string>{

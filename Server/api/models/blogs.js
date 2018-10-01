@@ -18,9 +18,7 @@ var blogSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  like: {
-    count:{type:Number},
-    users:{type:Array}
+  like: {type:Array
   },
   content: {
     type: String,

@@ -68,11 +68,8 @@ exports.updateLike = (req, res) => {
   Blog.updateOne({
       '_id': req.params._id
     }, {
-      $inc: {
-        "like.count": 1
-      },
-      $push: {
-        "like.users": req.body._id
+      $addToSet: {
+        "like": req.body._id
       }
     })
     .then(res.send())
@@ -93,9 +90,13 @@ exports.updateLike = (req, res) => {
 
 // find likes per user
 exports.findUserLikes = (req, res) => {
+
+// db.blogs.aggregate([{'$match':{'authorID':'5bab699652527c1bf45f10e3'}}, {'$group':{"_id":"authorID","count":{$sum:"$like.count"}}}, {'$project':{count:1,_id:0}}])
   
-  // db.blogs.aggregate([{'$match':{'author':'Somesh'}}, {'$group':{"_id":"","count":{$sum:"$like.count"}}}, {'$project':{count:1,_id:0}}])
-  Blog.aggregate({'$match':{'author':req.params.id}}, {'$group':{"_id":"","count":{$sum:"$like.count"}}}, {'$project':{count:1,_id:0}})  
+//  db.blog.aggregate([{$match:{authorName:"Nayan"}},{$group:{_id:"$authorName",total:{$sum:{$size:'$like'}} }},{$project:{'_id':0}}])
+
+
+  Blog.aggregate({'$match':{'authorID':req.params.id}}, {'$group':{"_id":"authorID",total:{$sum:{$size:'$like'}} }},{$project:{'_id':0}})
   .then(result=>{ res.send(result[0])})
   .catch(err => {
     if (err.kind === 'ObjectId') {

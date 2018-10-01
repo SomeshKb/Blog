@@ -80,3 +80,9 @@ h2{
 .container{
     min-height: 68vh;
 }
+
+p {
+    color: #353534;
+    margin-bottom: 0%;
+    font-size: 18px;
+}

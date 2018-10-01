@@ -3,11 +3,24 @@
     <span id="title">{{blog.title}}</span>
   </div>
   <div class="miniHeading" > 
-      <span id="author">written by: <a routerLink="/profile/author/{{blog.authorID}}"  >{{blog.authorName}}</a> </span>
-      
+      <span id="author">written by: <a *ngIf="blog.authorID===user._id; else elseAuthor" routerLink="/profile">{{blog.authorName}}</a> </span>
+        
+      <ng-template #elseAuthor> 
+          <a #elseAuthor routerLink="/profile/author/{{blog.authorID}}">{{blog.authorName}}</a>
+  
+      </ng-template>
+    
       <span id="publishDate">on {{blog.published_date}}   </span>
-      <button [disabled]="checkIfLiked()"  (click)="hitLike()" > Like </button>
-      <div class="count" *ngIf="!blog.like.count==0">Liked By:{{blog.like.count}}</div>
+
+
+      <button  *ngIf="!checkIfLiked(); else elseTemplate" (click)="hitLike()" > Like </button>
+        
+      <ng-template #elseTemplate>
+        <button>Liked </button>
+      </ng-template>
+
+
+      <div class="count" *ngIf="!likeby==0">Liked By:{{likeby}}</div>
       <button *ngIf="checkIfOwner()" (click)="removePost()" > Delete </button>
     
   </div>

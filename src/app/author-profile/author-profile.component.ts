@@ -13,7 +13,7 @@ import { UserService } from '../services/user.service';
 export class AuthorProfileComponent implements OnInit {
 
   author: UserDetails;
-
+  likes:number;
   blog:Blog[];
 
   constructor(private blogService:BlogService,private route: ActivatedRoute,private authenticationService: AuthenticationService,private userService: UserService) { 
@@ -32,15 +32,18 @@ export class AuthorProfileComponent implements OnInit {
     .subscribe(result=>{
       this.author=result;
       this.getAuthorBlogs(this.author._id);
+      this.getTotalLikes();
     })
   }
 
 
   getTotalLikes(): void {
-    this.userService.getUserLikesCount(this.author.name)
+    this.userService.getUserLikesCount(this.author._id)
     .subscribe(result=>{
-       result=JSON.stringify(result);
-      });
+      this.likes=JSON.parse(result['count']);
+
+      console.log(this.likes);
+     });
   }
 
   getAuthorBlogs(id:string): void{

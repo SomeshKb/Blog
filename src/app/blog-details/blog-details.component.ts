@@ -4,6 +4,7 @@ import { BlogService } from '../Services/blog.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
+import { UserDetails } from '../model/user';
 
 @Component({
   selector: 'app-blog-details',
@@ -15,12 +16,16 @@ export class BlogDetailsComponent implements OnInit {
 
   @Input() selectedBlog: Blog;
   blog: Blog;
+  user: UserDetails;
+  isLiked: boolean;
+  likeby: number;
 
 
   constructor(private blogService: BlogService, private route: ActivatedRoute
     , private router: Router, private auth: AuthenticationService, private userService: UserService) {
     if (auth.isLoggedIn()) {
       this.auth.isUserLoggedIn.next(true);
+      this.user = this.auth.getUserDetails();
     }
   }
 
@@ -30,19 +35,20 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   checkIfLiked() {
-    let isLiked;
+
     let currentUser = this.auth.getUserDetails()._id;
-    this.blog.like.users.map(user => {
-      if (user === currentUser) {
-        isLiked = true;
+    this.isLiked = false;
+    this.blog.like.map(user => {
+      if (user == currentUser) {
+        this.isLiked = true;
       }
-      else { isLiked = false; }
     })
-    return isLiked;
+    return this.isLiked;
   }
 
   hitLike(): void {
 
+    this.isLiked = true;
     this.blogService.updateLike(this.blog, this.auth.getUserDetails())
       .subscribe();
     this.getBlogDetail(this.blog._id);
@@ -61,25 +67,29 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   removePost(): void {
-      this.blogService.removeBlog(this.blog)
-      .subscribe(()=>{
+    this.blogService.removeBlog(this.blog)
+      .subscribe(() => {
         alert("Blog Deleted")
         this.router.navigateByUrl("/blogs");
-      },(err)=>{
-        if(err.status===200){
+      }, (err) => {
+        if (err.status === 200) {
           alert("Blog Deleted");
           this.router.navigateByUrl("/blogs");
-        }else if(err.status===404){
+        } else if (err.status === 404) {
           console.log("Blog Not Found");
         }
       }
-      
-      )}
+
+      )
+  }
 
   getBlogDetail(id: string): void {
     this.blogService.getBlog(id)
       .subscribe(blog => {
         this.blog = blog;
+        this.checkIfLiked()
+        this.likeby = this.blog.like.length;
       });
+
   }
 }
