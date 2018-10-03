@@ -3,8 +3,8 @@ var Blog = mongoose.model("blogs")
 
 
 exports.create = (req, res) => {
-  
-  
+
+
   const blog = new Blog({
     title: req.body.title,
     authorName: req.body.authorName,
@@ -14,7 +14,7 @@ exports.create = (req, res) => {
     published_date: req.body.published_date,
   });
 
- 
+
 
   blog.save()
     .then(data => {
@@ -91,29 +91,30 @@ exports.updateLike = (req, res) => {
 // find likes per user
 exports.findUserLikes = (req, res) => {
 
-// db.blogs.aggregate([{'$match':{'authorID':'5bab699652527c1bf45f10e3'}}, {'$group':{"_id":"authorID","count":{$sum:"$like.count"}}}, {'$project':{count:1,_id:0}}])
-  
-//  db.blog.aggregate([{$match:{authorName:"Nayan"}},{$group:{_id:"$authorName",total:{$sum:{$size:'$like'}} }},{$project:{'_id':0}}])
+  //  db.blog.aggregate([{$match:{authorName:"Nayan"}},{$group:{_id:"$authorName",total:{$sum:{$size:'$like'}} }},{$project:{'_id':0}}])
 
 
-  Blog.aggregate({'$match':{'authorID':req.params.id}}, {'$group':{"_id":"authorID",total:{$sum:{$size:'$like'}} }},{$project:{'_id':0}})
-  .then(result=>{ res.send(result[0])})
-  .catch(err => {
-    if (err.kind === 'ObjectId') {
-      return res.status(404).send({
-        message: "Not found  " + req.params.id
-      });
-    }
-    return res.status(500).send({
-      message: "Error while retrieving Data " + req.params.id
-    });
-  });
-  }
-
-
-  exports.deletePost = (req,res)=>{
-    Blog.deleteOne({_id:req.params.id})
-    .then(result=>{res.send("Record deleted")})
+  Blog.aggregate({
+      '$match': {
+        'authorID': req.params.id
+      }
+    }, {
+      '$group': {
+        "_id": "authorID",
+        total: {
+          $sum: {
+            $size: '$like'
+          }
+        }
+      }
+    }, {
+      $project: {
+        '_id': 0
+      }
+    })
+    .then(result => {
+      res.send(result[0])
+    })
     .catch(err => {
       if (err.kind === 'ObjectId') {
         return res.status(404).send({
@@ -124,5 +125,24 @@ exports.findUserLikes = (req, res) => {
         message: "Error while retrieving Data " + req.params.id
       });
     });
-    }
+}
 
+
+exports.deletePost = (req, res) => {
+  Blog.deleteOne({
+      _id: req.params.id
+    })
+    .then(result => {
+      res.send("Record deleted")
+    })
+    .catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: "Not found  " + req.params.id
+        });
+      }
+      return res.status(500).send({
+        message: "Error while retrieving Data " + req.params.id
+      });
+    });
+}

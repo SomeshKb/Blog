@@ -16,7 +16,7 @@ export class CreateBlogComponent implements OnInit {
   title:"",
 content:"",
 published_date:"",
-like:{count:0,users:[]},
+like:[],
 authorID:"",
 authorName:""};
 
@@ -33,7 +33,7 @@ authorName:""};
     this.blog.published_date=(today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear()).toString();
     this.blog.authorID=this.auth.getUserDetails()._id;
     this.blog.authorName=this.auth.getUserDetails().name;
-    this.blog.like= {count:0,users:[]}
+    this.blog.like=[]
     this.blogService.createBlog(this.blog).subscribe();
     this.router.navigateByUrl("/blogs")
   }

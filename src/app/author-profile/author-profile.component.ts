@@ -13,11 +13,11 @@ import { UserService } from '../services/user.service';
 export class AuthorProfileComponent implements OnInit {
 
   author: UserDetails;
-  likes:number;
-  blog:Blog[];
+  likes: number;
+  blog: Blog[];
 
-  constructor(private blogService:BlogService,private route: ActivatedRoute,private authenticationService: AuthenticationService,private userService: UserService) { 
-    if(authenticationService.isLoggedIn()){
+  constructor(private blogService: BlogService, private route: ActivatedRoute, private authenticationService: AuthenticationService, private userService: UserService) {
+    if (authenticationService.isLoggedIn()) {
       this.authenticationService.isUserLoggedIn.next(true);
     }
   }
@@ -27,30 +27,33 @@ export class AuthorProfileComponent implements OnInit {
     this.getAuthorDetails(id);
   }
 
-  getAuthorDetails(id:string){
+  getAuthorDetails(id: string) {
     this.userService.getAuthorDetails(id)
-    .subscribe(result=>{
-      this.author=result;
-      this.getAuthorBlogs(this.author._id);
-      this.getTotalLikes();
-    })
+      .subscribe(result => {
+        this.author = result;
+        this.getAuthorBlogs(this.author._id);
+        this.getTotalLikes();
+      })
   }
 
 
   getTotalLikes(): void {
     this.userService.getUserLikesCount(this.author._id)
-    .subscribe(result=>{
-      this.likes=JSON.parse(result['count']);
-
-      console.log(this.likes);
-     });
+      .subscribe(result => {
+        if (result == null) {
+          this.likes = 0;
+        }
+        else {
+          this.likes = JSON.parse(result['total']);
+        }
+      });
   }
 
-  getAuthorBlogs(id:string): void{
+  getAuthorBlogs(id: string): void {
 
     this.userService.getUserBlogs(id)
-    .subscribe(result=>{
-      this.blog=result
-    });
+      .subscribe(result => {
+        this.blog = result
+      });
   }
 }

@@ -1,23 +1,23 @@
-<div class="container"> 
+<div class="container">
   <dl *ngIf="user">
-  <h3>Profile</h3>
-  <dt>Name:</dt>
-  <dd>{{user.name}}</dd>
-  <dt>Email:</dt>
-  <dd>{{user.email}}</dd>
-</dl>
+    <h3>Profile</h3>
+    <dt>Name:</dt>
+    <dd>{{user.name}}</dd>
+    <dt>Email:</dt>
+    <dd>{{user.email}}</dd>
+  </dl>
 
 
 
-<div class="blog" *ngIf="blog">
-  <p>Total Likes:{{likes}}</p>
+  <div class="blog" *ngIf="blog">
+    <p>Total Likes:{{likes}}</p>
 
-  <h2>Your Blogs</h2>
+    <h2>Your Blogs</h2>
 
-  <dl *ngFor="let item of blog" >
-    <dt routerLink="/blog/{{item._id}}">{{item.title}}</dt>
-</dl>
-</div>
+    <dl *ngFor="let item of blog">
+      <dt routerLink="/blog/{{item._id}}">{{item.title}}</dt>
+    </dl>
+  </div>
 
 
 </div>

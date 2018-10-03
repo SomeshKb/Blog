@@ -12,7 +12,7 @@
 
 <div class="blog" *ngIf="blog">
 
-  <p>Total Likes:{{likes}}</p>
+  <p *ngIf="likes!=0">Total Likes:{{likes}}</p>
 
   <h2>Author's Blogs</h2>
 

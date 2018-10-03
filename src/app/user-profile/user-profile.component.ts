@@ -14,38 +14,44 @@ import { Blog } from '../model/blog';
 export class UserProfileComponent implements OnInit {
 
   user: UserDetails;
-  likes:number;
-  blog:Blog[];
+  likes: number;
+  blog: Blog[];
 
-  constructor(private blogService:BlogService,private authenticationService: AuthenticationService,private userService: UserService) { 
-    if(authenticationService.isLoggedIn()){
+  constructor(private blogService: BlogService, private authenticationService: AuthenticationService, private userService: UserService) {
+    if (authenticationService.isLoggedIn()) {
       this.authenticationService.isUserLoggedIn.next(true);
     }
   }
 
   ngOnInit() {
-      this.user=this.authenticationService.getUserDetails();
-      if(this.user){
-        this.getUserBlogs();
-        this.getTotalLikes();
-      }
+    this.user = this.authenticationService.getUserDetails();
+    if (this.user) {
+      this.getUserBlogs();
+      this.getTotalLikes();
+    }
   }
 
   getTotalLikes(): void {
     this.userService.getUserLikesCount(this.user._id)
-    .subscribe(result=>{
-       this.likes=JSON.parse(result['count']);
+      .subscribe(result => {
+        if (result == null) {
+          this.likes = 0;
+        }
+        else {
+          this.likes = JSON.parse(result['total']);
+        }
+        console.log(result);
       });
   }
 
-  getUserBlogs(): void{
-    
+  getUserBlogs(): void {
+
     this.userService.getUserBlogs(this.user._id)
-    .subscribe(result=>{
-      this.blog=result
-    });
+      .subscribe(result => {
+        this.blog = result
+      });
   }
 
-  
+
 
 }
