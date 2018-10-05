@@ -11,8 +11,6 @@ export class AuthenticationService {
   private token: string;
   
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  // public isUserLoggedIn: Subject<Boolean> = new Subject<Boolean>();
-
 
   constructor(private http: HttpClient, private router: Router) {
     
@@ -48,7 +46,6 @@ export class AuthenticationService {
     const user = this.getUserDetails();
     
     if (user) {
-     // this.isUserLoggedIn.next(true);
       return user.exp > Date.now() / 1000;
     } else {
       return false;

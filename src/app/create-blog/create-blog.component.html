@@ -7,7 +7,7 @@
     <textarea rows=10 #content="ngModel" type="text" [(ngModel)]="blog.content" name="content" placeholder="Content"  required minlength="40" ></textarea>
 
     
-    <div *ngIf="blogForm.submitted && !name.valid">
+    <div *ngIf="blogForm.submitted && !content.valid ">
         <label class="validation-message">This field is required.(Minimum Length=40)</label>
       </div>
     <input type="submit" value="CreateBlog">

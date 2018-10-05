@@ -15,35 +15,33 @@ export class BlogService {
 
   constructor(private http: HttpClient) { }
 
-  /** GET blogs from the server */
+  //  GET blogs from the server 
   getBlogs (): Observable<Blog[]> {
     const url :string= this.blogUrl+"/all";
     return this.http.get<Blog[]>(url);
   }
 
+  // GET blog using id from server
   getBlog(id: string): Observable<Blog> {
     const url = `${this.blogUrl}/${id}`;
     return this.http.get<Blog>(url);
   }
 
+  // UPDATE like of a blog 
   updateLike(updateBlog: Blog,user:UserDetails){
     const url =this.blogUrl+"/update/likes/"+updateBlog._id;
     return this.http.put(url,user);
   }
 
+  // CREATE blog    
   createBlog(blog:Blog){
-
     const url=this.blogUrl+"/create";
     return this.http.post(url,blog);
   }
 
+  // DELETE Blog from Server
   removeBlog(blog:Blog){
-
     const url=this.blogUrl+"/remove/"+blog._id;
     return this.http.delete(url);
   }
-
-
-
-
 }
