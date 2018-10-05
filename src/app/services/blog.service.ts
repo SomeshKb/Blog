@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, BehaviorSubject } from 'rxjs';
-import { Blog } from '../model/blog';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Blog, Comments } from '../model/blog';
 import { UserDetails } from '../model/User';
 
 
@@ -44,4 +44,13 @@ export class BlogService {
     const url=this.blogUrl+"/remove/"+blog._id;
     return this.http.delete(url);
   }
+
+  // ADD Comments on the Blog
+  addComments(blogID:string,comments:Comments){
+    const url = this.blogUrl+"/update/comments/"+blogID;
+    console.log(url);
+    return this.http.put(url,comments)
+  }
+
+
 }

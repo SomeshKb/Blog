@@ -1,4 +1,3 @@
-
 export class Blog {
     _id:string;
     title: string;
@@ -7,4 +6,10 @@ export class Blog {
     published_date: string;
     like: Array<string>;
     content: string;
+    comments:Array<Comments>
+}
+
+export class Comments{
+    content : string;
+    userID : string;
 }

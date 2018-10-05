@@ -25,6 +25,23 @@
     
   </div>
 
-  <div class="main" [innerHTML]="blog.content" ></div>
+  <div class="main" [innerHTML]="blog.content" >
+  </div>
 
+  <div class="comment" *ngIf="blog.comments">
+    <h2>Comments</h2>
+    <dl *ngFor="let comment of blog.comments" class="comments" >
+      <dt id="content" > {{comment.content}} </dt>
+          <dt id="user">--{{comment.userID}}</dt>
+    </dl>
+  </div>
+ 
+</div>
+
+<div id="addComments"> 
+  <form #commentForm="ngForm" (ngSubmit)="commentForm.valid && onSubmit(commentForm)">
+  <input type="text" #name="ngModel" [(ngModel)]="comments.content" name="content" placeholder="content"  required minlength="6">
+
+  <input type="submit" value="CreateComment">
+</form>
 </div>

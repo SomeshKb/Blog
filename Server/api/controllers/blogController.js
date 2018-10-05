@@ -1,9 +1,7 @@
 var mongoose = require("mongoose")
 var Blog = mongoose.model("blogs")
 
-
 exports.create = (req, res) => {
-
 
   const blog = new Blog({
     title: req.body.title,
@@ -13,8 +11,6 @@ exports.create = (req, res) => {
     content: req.body.content,
     published_date: req.body.published_date,
   });
-
-
 
   blog.save()
     .then(data => {
@@ -26,7 +22,6 @@ exports.create = (req, res) => {
     });
 
 }
-
 
 //get data
 
@@ -93,7 +88,6 @@ exports.findUserLikes = (req, res) => {
 
   //  db.blog.aggregate([{$match:{authorName:"Nayan"}},{$group:{_id:"$authorName",total:{$sum:{$size:'$like'}} }},{$project:{'_id':0}}])
 
-
   Blog.aggregate({
       '$match': {
         'authorID': req.params.id
@@ -127,7 +121,6 @@ exports.findUserLikes = (req, res) => {
     });
 }
 
-
 exports.deletePost = (req, res) => {
   Blog.deleteOne({
       _id: req.params.id
@@ -146,3 +139,25 @@ exports.deletePost = (req, res) => {
       });
     });
 }
+
+
+exports.addComments = (req, res) => {
+  Blog.updateOne({
+      '_id': req.params.id
+    }, {
+      $addToSet: {
+        "comments": req.body
+      }
+    })
+    .then(res.send())
+    .catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: "Blog not found  " + req.params._id
+        });
+      }
+      return res.status(500).send({
+        message: "Error while retrieving blog " + req.params._id
+      });
+    });
+};

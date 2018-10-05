@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
 import { UserDetails } from '../model/user';
+import { Comments } from '../model/blog';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-blog-details',
@@ -19,6 +21,11 @@ export class BlogDetailsComponent implements OnInit {
   user: UserDetails;
   isLiked: boolean;
   likeby: number;
+
+  comments:Comments={
+    content:"",
+    userID:""
+  };
 
 
   constructor(private blogService: BlogService, private route: ActivatedRoute
@@ -91,5 +98,12 @@ export class BlogDetailsComponent implements OnInit {
         this.likeby = this.blog.like.length;
       });
 
+  }
+
+  onSubmit(form: NgForm) {
+    let userID : string = this.auth.getUserDetails()._id;
+    this.comments.userID=userID;
+    console.log(this.comments);
+    this.blogService.addComments(this.blog._id,this.comments);
   }
 }

@@ -23,8 +23,10 @@ var blogSchema = new mongoose.Schema({
   content: {
     type: String,
     required: true
+  },
+  comments:{
+      type: Array 
   }
 });
-
 
 module.exports=mongoose.model("blogs",blogSchema);

@@ -18,7 +18,8 @@ content:"",
 published_date:"",
 like:[],
 authorID:"",
-authorName:""};
+authorName:"",
+comments:[]};
 
   constructor(private auth:AuthenticationService,private blogService:BlogService,private router:Router) {
     if(auth.isLoggedIn()){
@@ -28,6 +29,7 @@ authorName:""};
 
   ngOnInit() {
   }
+  
   onSubmit(form: NgForm) {
     var today = new Date();
     this.blog.published_date=(today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear()).toString();
