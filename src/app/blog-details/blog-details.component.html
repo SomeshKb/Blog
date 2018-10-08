@@ -32,7 +32,7 @@
     <h2>Comments</h2>
     <dl *ngFor="let comment of blog.comments" class="comments" >
       <dt id="content" > {{comment.content}} </dt>
-          <dt id="user">--{{comment.userID}}</dt>
+          <dt id="user">--{{comment.userName}}</dt>
     </dl>
   </div>
  
@@ -40,8 +40,7 @@
 
 <div id="addComments"> 
   <form #commentForm="ngForm" (ngSubmit)="commentForm.valid && onSubmit(commentForm)">
-  <input type="text" #name="ngModel" [(ngModel)]="comments.content" name="content" placeholder="content"  required minlength="6">
-
+  <input required type="text" #name="ngModel" [(ngModel)]="comments.content" name="content" placeholder="content"  required minlength="1" [ngClass]="{'invalid-textbox' :commentForm.submitted && !name.valid}">
   <input type="submit" value="CreateComment">
 </form>
 </div>

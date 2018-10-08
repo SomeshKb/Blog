@@ -142,6 +142,7 @@ exports.deletePost = (req, res) => {
 
 
 exports.addComments = (req, res) => {
+  
   Blog.updateOne({
       '_id': req.params.id
     }, {

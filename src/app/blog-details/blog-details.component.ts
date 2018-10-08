@@ -1,5 +1,5 @@
 import { Blog } from './../model/blog';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { BlogService } from '../Services/blog.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -12,6 +12,7 @@ import { NgForm } from '@angular/forms';
   selector: 'app-blog-details',
   templateUrl: './blog-details.component.html',
   styleUrls: ['./blog-details.component.css'],
+
 })
 export class BlogDetailsComponent implements OnInit {
 
@@ -23,6 +24,7 @@ export class BlogDetailsComponent implements OnInit {
   likeby: number;
 
   comments:Comments={
+    userName:"",
     content:"",
     userID:""
   };
@@ -41,8 +43,15 @@ export class BlogDetailsComponent implements OnInit {
     this.getBlogDetail(id);
   }
 
-  checkIfLiked() {
 
+  getCommentUserName( userID:string){
+   this.userService.getAuthorName(userID)
+     .subscribe(result=> {console.log(result);});
+        
+  }
+
+
+  checkIfLiked() {
     let currentUser = this.auth.getUserDetails()._id;
     this.isLiked = false;
     this.blog.like.map(user => {
@@ -101,9 +110,16 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    let userID : string = this.auth.getUserDetails()._id;
-    this.comments.userID=userID;
-    console.log(this.comments);
-    this.blogService.addComments(this.blog._id,this.comments);
+    this.comments.userID=this.auth.getUserDetails()._id;;
+    this.comments.userName=this.auth.getUserDetails().name;
+    this.blogService.addComments(this.blog._id,this.comments).subscribe(()=>{
+      this.clearCommentForm();
+
+      this.getBlogDetail(this.blog._id);
+    });
+  }
+
+  clearCommentForm(){
+    this.comments.content=""
   }
 }

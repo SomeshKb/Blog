@@ -10,6 +10,7 @@ export class Blog {
 }
 
 export class Comments{
+    userName: string;
     content : string;
     userID : string;
 }

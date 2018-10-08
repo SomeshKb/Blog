@@ -49,7 +49,7 @@ export class BlogService {
   addComments(blogID:string,comments:Comments){
     const url = this.blogUrl+"/update/comments/"+blogID;
     console.log(url);
-    return this.http.put(url,comments)
+    return this.http.put(url,comments);
   }
 
 
