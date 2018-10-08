@@ -15,13 +15,10 @@ module.exports.profileRead = function(req, res) {
         res.status(200).json(user);
       });
   }
-
 };
 
-
 module.exports.authorName = function(req,res){
-
-  
+ 
   User.findOne({_id:req.params.id},{_id:1,name:1,email:1})
   .then(result=>{res.send(result)})
   .catch(err => {
@@ -35,7 +32,6 @@ module.exports.authorName = function(req,res){
     });
   });
   };
-
 
   module.exports.userBlogs = function(req,res){
   
@@ -51,4 +47,4 @@ module.exports.authorName = function(req,res){
         message: "Error while retrieving Blog by author with ID " + req.params.id
       });
     });
-    };
+  };
