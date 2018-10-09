@@ -14,7 +14,7 @@ var routesApi = require('./api/routes/index');
 
 var app = express();
 
-//app.use(express.static(__dirname + '/Book'));
+//app.use(express.static(__dirname + '/Blog'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
