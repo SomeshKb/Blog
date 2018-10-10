@@ -4,6 +4,7 @@ import { Blog } from '../model/blog';
 import { AuthenticationService } from '../services/authentication.service';
 import { BlogService } from 'src/app/Services/blog.service';
 import { Router } from '@angular/router';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-create-blog',
@@ -21,7 +22,9 @@ authorID:"",
 authorName:"",
 comments:[]};
 
-  constructor(private auth:AuthenticationService,private blogService:BlogService,private router:Router) {
+  constructor(private auth:AuthenticationService,private blogService:BlogService,private router:Router,
+    private alertService:AlertService) {
+
     if(auth.isLoggedIn()){
     this.auth.isUserLoggedIn.next(true);
     }
@@ -36,7 +39,10 @@ comments:[]};
     this.blog.authorID=this.auth.getUserDetails()._id;
     this.blog.authorName=this.auth.getUserDetails().name;
     this.blog.like=[]
-    this.blogService.createBlog(this.blog).subscribe();
-    this.router.navigateByUrl("/blogs")
+    this.blogService.createBlog(this.blog).subscribe(()=>{
+      this.router.navigateByUrl("/blogs")
+    },(err)=>{
+    }
+    );
   }
 }

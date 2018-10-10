@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { UserDetails } from '../model/user';
 import { Comments } from '../model/blog';
 import { NgForm } from '@angular/forms';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-blog-details',
@@ -30,11 +31,13 @@ export class BlogDetailsComponent implements OnInit {
   };
 
 
-  constructor(private blogService: BlogService, private route: ActivatedRoute
-    , private router: Router, private auth: AuthenticationService, private userService: UserService) {
-    if (auth.isLoggedIn()) {
+  constructor(private blogService: BlogService, private route: ActivatedRoute, private router: Router,
+     private auth: AuthenticationService, private userService: UserService, private alertServices:AlertService) {
+    
+      if (auth.isLoggedIn()) {
       this.auth.isUserLoggedIn.next(true);
       this.user = this.auth.getUserDetails();
+    
     }
   }
 
@@ -85,14 +88,15 @@ export class BlogDetailsComponent implements OnInit {
   removePost(): void {
     this.blogService.removeBlog(this.blog)
       .subscribe(() => {
-        alert("Blog Deleted")
+        this.alertServices.add("Blog deleted successfully")
         this.router.navigateByUrl("/blogs");
       }, (err) => {
         if (err.status === 200) {
-          alert("Blog Deleted");
+          this.alertServices.add("Blog deleted successfully")
           this.router.navigateByUrl("/blogs");
         } else if (err.status === 404) {
-          console.log("Blog Not Found");
+          this.alertServices.add("Blog Not Found")
+         
         }
       }
 

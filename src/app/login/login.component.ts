@@ -4,6 +4,7 @@ import { BlogService } from '../services/blog.service';
 import { NgForm } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
   };
   user: UserDetails;
   
-  constructor(private auth:AuthenticationService,private router: Router) { }
+  constructor(private auth:AuthenticationService,private router: Router,private alertService:AlertService) { }
 
   ngOnInit() {
     if(this.auth.isLoggedIn()){
@@ -42,7 +43,7 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/blogs');
     }, (err) => {
       if(err.status===401){
-        alert('Invalid Credentials');
+        this.alertService.add('Invalid Credentials');
       }
     });
   }

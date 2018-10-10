@@ -20,6 +20,8 @@ import { CreateBlogComponent } from './create-blog/create-blog.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserService } from 'src/app/services/user.service';
 import { AuthorProfileComponent } from './author-profile/author-profile.component';
+import { AlertService } from './services/alert.service';
+import { AlertComponent } from './shared/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { AuthorProfileComponent } from './author-profile/author-profile.componen
     SignupComponent,
     CreateBlogComponent,
     UserProfileComponent,
-    AuthorProfileComponent
+    AuthorProfileComponent,
+    AlertComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +45,7 @@ import { AuthorProfileComponent } from './author-profile/author-profile.componen
     FormsModule,
     HttpClientModule,
     AppRoutingModule  ],
-  providers: [BlogService,AuthenticationService,AuthGuardService,UserService],
+  providers: [BlogService,AuthenticationService,AuthGuardService,UserService,AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

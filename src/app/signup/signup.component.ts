@@ -4,6 +4,7 @@ import { BlogService } from 'src/app/Services/blog.service';
 import { TokenPayload } from '../model/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-signup',
@@ -21,7 +22,7 @@ export class SignupComponent implements OnInit {
      'password':""
   };
 
-  constructor(private auth:AuthenticationService,private router: Router) { }
+  constructor(private auth:AuthenticationService,private router: Router,private alertService:AlertService) { }
 
   ngOnInit() {
       if(this.auth.isLoggedIn()){
@@ -39,7 +40,7 @@ export class SignupComponent implements OnInit {
       this.router.navigateByUrl('/blogs');
     }, (err) => {
       if(err.status==409){
-        alert(err.error.message);
+        this.alertService.add(err.error.message);
       }
     });
   }
