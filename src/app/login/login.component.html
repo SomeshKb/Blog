@@ -1,4 +1,4 @@
-<form #logInForm="ngForm" (ngSubmit)="logInForm.valid && onSubmit(logInForm)">
+<form #logInForm="ngForm" (ngSubmit)="logInForm.valid && onSubmit(logInForm) ">
     <input type="text" #email="ngModel" [(ngModel)]="credentials.email" name="email" placeholder="Email"
     required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :logInForm.submitted && !email.valid }">
     <div *ngIf="logInForm.submitted && email.errors">

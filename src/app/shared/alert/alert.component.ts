@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from '../../services/alert.service';
+import { timeout } from 'q';
 
 
 @Component({
     selector: 'app-alert',
-    template: `<span class="alert" *ngIf='alert!==""'>
-                {{alert}}
-                </span>` ,
+    templateUrl:'./alert.component.html',
     styles : [`span {
         padding: 5px 25px;
         margin: auto 25px;
@@ -21,11 +20,9 @@ import { AlertService } from '../../services/alert.service';
 export class AlertComponent implements  OnInit{
 
     alert:string="";
-
+    messages:string[];
     constructor(private alertService: AlertService) { 
-        this.alertService.alert.subscribe(value => {
-            this.alert=value;
-        });
+      this.messages=alertService.messages;
     }
 
     ngOnInit() {
