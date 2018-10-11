@@ -40,7 +40,7 @@ export class SignupComponent implements OnInit {
       this.router.navigateByUrl('/blogs');
     }, (err) => {
       if(err.status==409){
-        this.alertService.add(err.error.message);
+        this.alertService.addAlertToast(err.error.message);
       }
     });
   }

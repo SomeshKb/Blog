@@ -88,20 +88,28 @@ export class BlogDetailsComponent implements OnInit {
   removePost(): void {
     this.blogService.removeBlog(this.blog)
       .subscribe(() => {
-        this.alertServices.add("Blog deleted successfully")
+        this.alertServices.addAlertToast("Blog deleted successfully")
         this.router.navigateByUrl("/blogs");
       }, (err) => {
         if (err.status === 200) {
-          this.alertServices.add("Blog deleted successfully")
+          this.alertServices.addAlertToast("Blog deleted successfully")
           this.router.navigateByUrl("/blogs");
         } else if (err.status === 404) {
-          this.alertServices.add("Blog Not Found")
-         
+          this.alertServices.addAlertToast("Blog Not Found")      
         }
       }
 
       )
   }
+
+
+  editPost(): void {
+    this.router.navigateByUrl("/blog/edit/"+this.blog._id);
+
+  }
+
+
+
 
   getBlogDetail(id: string): void {
     this.blogService.getBlog(id)

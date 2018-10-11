@@ -22,6 +22,7 @@
 
       <div class="count" *ngIf="!likeby==0">Liked By:{{likeby}}</div>
       <button *ngIf="checkIfOwner()" (click)="removePost()" > Delete </button>
+      <button *ngIf="checkIfOwner()" (click)="editPost()" > Edit </button>
     
   </div>
 

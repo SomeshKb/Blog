@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenPayload, UserDetails } from '../model/user';
-import { BlogService } from '../services/blog.service';
 import { NgForm } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
@@ -43,7 +42,7 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/blogs');
     }, (err) => {
       if(err.status===401){
-        this.alertService.add('Invalid Credentials');
+        this.alertService.addAlertToast('Invalid Credentials');
         
       }
     });

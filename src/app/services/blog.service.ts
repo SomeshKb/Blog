@@ -53,4 +53,10 @@ export class BlogService {
   }
 
 
+  updateBlog(blog:Blog){
+    const url=this.blogUrl+"/update/"+blog._id;
+    return this.http.put(url,blog);
+  }
+
+
 }

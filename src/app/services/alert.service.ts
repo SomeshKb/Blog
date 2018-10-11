@@ -17,13 +17,8 @@ export class AlertService {
       }, 4000);
     });
   }
-    add(message: string) {
-      console.log("value:"+message);
-
+    addAlertToast(message: string) {
       this.alert.next(message);
     }
   
-    listen() {
- 
-    }
 }

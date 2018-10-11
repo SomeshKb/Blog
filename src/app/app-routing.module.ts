@@ -10,6 +10,7 @@ import { CreateBlogComponent } from 'src/app/create-blog/create-blog.component';
 import { UserDetails } from './model/User';
 import { UserProfileComponent } from 'src/app/user-profile/user-profile.component';
 import { AuthorProfileComponent } from 'src/app/author-profile/author-profile.component';
+import { BlogEditComponent } from './blog-edit/blog-edit.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'register', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'blog/:id', component: BlogDetailsComponent,canActivate: [AuthGuardService]},
+  { path: 'blog/edit/:id', component: BlogEditComponent,canActivate: [AuthGuardService]},
   { path: 'create', component: CreateBlogComponent ,canActivate: [AuthGuardService]},
   { path: 'profile', component: UserProfileComponent ,canActivate: [AuthGuardService]},
   { path: 'profile/author/:id', component: AuthorProfileComponent ,canActivate: [AuthGuardService]},
