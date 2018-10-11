@@ -59,5 +59,10 @@ li:hover{
 
 .content{
     min-height: 72.5vh;
-
 }
+
+:host {
+    position: static;
+    top: 0;
+    left: 0;
+} 

@@ -1,14 +1,19 @@
 :host {
-    position: fixed; 
-    top: 0;
-    left: 0;
+    position: fixed;
 } 
 
 span {
-    padding: 5px 25px;
-    margin: auto 25px;
-    background: #ff6661;
     color: rgb(255,255, 255);
     font-size: 25px;
-    border-radius: 5px;
+}
+
+.content {
+    border-radius: 15px;
+    position: sticky;
+    float:right;
+    padding: 5px 25px;
+    margin: 5px 20px;
+    background: #ff6661;
+
+
 }
