@@ -1,47 +1,49 @@
 <div *ngIf="blog">
-  <div class="heading" > 
+  <div class="heading">
     <span id="title">{{blog.title}}</span>
   </div>
-  <div class="miniHeading" > 
-      <span id="author">written by: <a *ngIf="blog.authorID===user._id; else elseAuthor" routerLink="/profile">{{blog.authorName}}</a> </span>
-        
-      <ng-template #elseAuthor> 
-          <a #elseAuthor routerLink="/profile/author/{{blog.authorID}}">{{blog.authorName}}</a>
-  
-      </ng-template>
-    
-      <span id="publishDate">on {{blog.published_date}}   </span>
+  <div class="miniHeading">
+    <span id="author">written by: <a *ngIf="blog.authorID===user._id; else elseAuthor" routerLink="/profile">{{blog.authorName}}</a>
+    </span>
+
+    <ng-template #elseAuthor>
+      <a #elseAuthor routerLink="/profile/author/{{blog.authorID}}">{{blog.authorName}}</a>
+
+    </ng-template>
+
+    <span id="publishDate">on {{blog.published_date}} </span>
 
 
-      <button  *ngIf="!checkIfLiked(); else elseTemplate" (click)="hitLike()" > Like </button>
-        
-      <ng-template #elseTemplate>
-        <button>Liked </button>
-      </ng-template>
+    <button *ngIf="!checkIfLiked(); else elseTemplate" (click)="hitLike()"> Like </button>
+
+    <ng-template #elseTemplate>
+      <button>Liked </button>
+    </ng-template>
 
 
-      <div class="count" *ngIf="!likeby==0">Liked By:{{likeby}}</div>
-      <button *ngIf="checkIfOwner()" (click)="removePost()" > Delete </button>
-      <button *ngIf="checkIfOwner()" (click)="editPost()" > Edit </button>
-    
+    <div class="count" *ngIf="!likeby==0">Liked By:{{likeby}}</div>
+    <button *ngIf="checkIfOwner()" (click)="removePost()"> Delete </button>
+    <button *ngIf="checkIfOwner()" (click)="editPost()"> Edit </button>
+
   </div>
 
-  <div class="main" [innerHTML]="blog.content" >
+  <div class="main" [innerHTML]="blog.content">
   </div>
 
   <div class="comment" *ngIf="blog.comments">
     <h2>Comments</h2>
-    <dl *ngFor="let comment of blog.comments" class="comments" >
-      <dt id="content" > {{comment.content}} </dt>
-          <dt id="user">--{{comment.userName}}</dt>
+    <dl *ngFor="let comment of blog.comments" class="comments">
+      <dt id="content"> {{comment.content}} </dt>
+      <dt id="user">--{{comment.userName}}</dt>
     </dl>
   </div>
- 
+
 </div>
 
-<div *ngIf="blog" id="addComments"> 
+<div *ngIf="blog" id="addComments">
   <form #commentForm="ngForm" (ngSubmit)="commentForm.valid && onSubmit(commentForm)">
-  <input required type="text" #name="ngModel" [(ngModel)]="comments.content" name="content" placeholder="content"  required minlength="1" [ngClass]="{'invalid-textbox' :commentForm.submitted && !name.valid}">
-  <input type="submit" value="CreateComment">
-</form>
+    <input required type="text" #name="ngModel" [(ngModel)]="comments.content" name="content" placeholder="content"
+      required minlength="1" [ngClass]="{'invalid-textbox' :commentForm.submitted && !name.valid}">
+    <input type="submit" value="CreateComment">
+  </form>
 </div>

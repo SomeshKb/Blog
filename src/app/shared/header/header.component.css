@@ -9,21 +9,22 @@ header {
 }
 
 ul {
-		flex-flow: column;
-    color: rgb(122, 62, 62);
-    list-style: none;
-    margin:20px;
-    width: 100%;
+  flex-flow: column;
+  color: rgb(122, 62, 62);
+  list-style: none;
+  margin: 20px;
+  width: 100%;
 }
-ul li{
-  float:right;
+
+ul li {
+  float: right;
 }
 
 ul li a {
   cursor: pointer;
   padding: 20px;
   font-size: 20px;
-  text-decoration: none;			
+  text-decoration: none;
   color: white;
 }
 
@@ -32,7 +33,7 @@ ul li p {
   font-size: 20px;
   margin: 0%;
   margin: 0px 5px;
-  text-decoration: none;			
+  text-decoration: none;
   color: white;
 }
 

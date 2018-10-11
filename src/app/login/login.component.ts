@@ -21,13 +21,13 @@ export class LoginComponent implements OnInit {
     password: ''
   };
   user: UserDetails;
-  
-  constructor(private auth:AuthenticationService,private router: Router,private alertService:AlertService) { }
+
+  constructor(private auth: AuthenticationService, private router: Router, private alertService: AlertService) { }
 
   ngOnInit() {
-    if(this.auth.isLoggedIn()){
+    if (this.auth.isLoggedIn()) {
       this.router.navigateByUrl('/blogs');
-      
+
     }
   }
 
@@ -38,26 +38,26 @@ export class LoginComponent implements OnInit {
   login() {
 
     this.auth.login(this.credentials).subscribe(() => {
-     this.auth.isUserLoggedIn.next(true);
+      this.auth.isUserLoggedIn.next(true);
       this.router.navigateByUrl('/blogs');
     }, (err) => {
-      if(err.status===401){
+      if (err.status === 401) {
         this.alertService.addAlertToast('Invalid Credentials');
-        
+
       }
     });
   }
 
 
   resetForm(form: NgForm) {
-      this.credentials={
-        'email':"",
-        'password':""
-     };
+    this.credentials = {
+      'email': "",
+      'password': ""
+    };
   }
 
-  getDetails(){
-      this.user = this.auth.getUserDetails();
+  getDetails() {
+    this.user = this.auth.getUserDetails();
   }
 
 }

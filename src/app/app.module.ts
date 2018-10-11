@@ -46,8 +46,8 @@ import { BlogEditComponent } from './blog-edit/blog-edit.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule  ],
-  providers: [BlogService,AuthenticationService,AuthGuardService,UserService,AlertService],
+    AppRoutingModule],
+  providers: [BlogService, AuthenticationService, AuthGuardService, UserService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

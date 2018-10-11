@@ -35,7 +35,7 @@ router.get('/blog/user/likes/:id', ctrlblog.findUserLikes);
 
 router.get('/blog/:_id', ctrlblog.findOne);
 
-router.get('/user/likes/:id' ,ctrlblog.findUserLikes);
+router.get('/user/likes/:id', ctrlblog.findUserLikes);
 
 router.delete('/blog/remove/:id', ctrlblog.deletePost);
 

@@ -16,8 +16,8 @@ export class BlogService {
   constructor(private http: HttpClient) { }
 
   //  GET blogs from the server 
-  getBlogs (): Observable<Blog[]> {
-    const url :string= this.blogUrl+"/all";
+  getBlogs(): Observable<Blog[]> {
+    const url: string = this.blogUrl + "/all";
     return this.http.get<Blog[]>(url);
   }
 
@@ -28,34 +28,34 @@ export class BlogService {
   }
 
   // UPDATE like of a blog 
-  updateLike(updateBlog: Blog,user:UserDetails){
-    const url =this.blogUrl+"/update/likes/"+updateBlog._id;
-    return this.http.put(url,user);
+  updateLike(updateBlog: Blog, user: UserDetails) {
+    const url = this.blogUrl + "/update/likes/" + updateBlog._id;
+    return this.http.put(url, user);
   }
 
   // CREATE blog    
-  createBlog(blog:Blog){
-    const url=this.blogUrl+"/create";
-    return this.http.post(url,blog);
+  createBlog(blog: Blog) {
+    const url = this.blogUrl + "/create";
+    return this.http.post(url, blog);
   }
 
   // DELETE Blog from Server
-  removeBlog(blog:Blog){
-    const url=this.blogUrl+"/remove/"+blog._id;
+  removeBlog(blog: Blog) {
+    const url = this.blogUrl + "/remove/" + blog._id;
     return this.http.delete(url);
   }
 
   // ADD Comments on the Blog
-  addComments(blogID:string,comments:Comments){
-    const url = this.blogUrl+"/update/comments/"+blogID;
+  addComments(blogID: string, comments: Comments) {
+    const url = this.blogUrl + "/update/comments/" + blogID;
     console.log(url);
-    return this.http.put(url,comments);
+    return this.http.put(url, comments);
   }
 
 
-  updateBlog(blog:Blog){
-    const url=this.blogUrl+"/update/"+blog._id;
-    return this.http.put(url,blog);
+  updateBlog(blog: Blog) {
+    const url = this.blogUrl + "/update/" + blog._id;
+    return this.http.put(url, blog);
   }
 
 

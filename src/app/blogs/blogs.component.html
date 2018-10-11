@@ -1,12 +1,11 @@
 <div class="content">
-    <ul id="blog">
-        <li *ngFor="let blog of blogs">
-            <a (click)="onSelect(blog)" routerLink="/blog/{{blog._id}}" >
-            <h3>{{blog.title}} </h3>
-            <span id="content" [innerHTML]="blog.content|limitParagraph">....</span>
-            </a>
-        </li>
-        
-    </ul>
-</div>
+  <ul id="blog">
+    <li *ngFor="let blog of blogs">
+      <a (click)="onSelect(blog)" routerLink="/blog/{{blog._id}}">
+        <h3>{{blog.title}} </h3>
+        <span id="content" [innerHTML]="blog.content|limitParagraph">....</span>
+      </a>
+    </li>
 
+  </ul>
+</div>

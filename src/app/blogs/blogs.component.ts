@@ -14,8 +14,8 @@ export class BlogsComponent implements OnInit {
   blogs: Blog[];
   selectedBlog: Blog;
 
-  constructor(private blogService: BlogService,private auth:AuthenticationService) {
-    if(auth.isLoggedIn()){
+  constructor(private blogService: BlogService, private auth: AuthenticationService) {
+    if (auth.isLoggedIn()) {
       this.auth.isUserLoggedIn.next(true);
     }
   }
@@ -26,7 +26,7 @@ export class BlogsComponent implements OnInit {
 
   getBlogs(): void {
     this.blogService.getBlogs()
-    .subscribe(blogs => this.blogs = blogs);
+      .subscribe(blogs => this.blogs = blogs);
   }
 
   onSelect(blog: Blog): void {
