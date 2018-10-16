@@ -24,6 +24,8 @@ router.put('/blog/update/likes/:_id', ctrlblog.updateLike);
 
 router.put('/blog/update/comments/:id', ctrlblog.addComments);
 
+router.put('/blog/update/:id', ctrlblog.updateBlog);
+
 router.post('/blog/create', ctrlblog.create);
 
 router.get('/user/blog/:id', ctrlProfile.userBlogs);
@@ -33,7 +35,7 @@ router.get('/blog/user/likes/:id', ctrlblog.findUserLikes);
 
 router.get('/blog/:_id', ctrlblog.findOne);
 
-router.get('/user/likes/:id' ,ctrlblog.findUserLikes);
+router.get('/user/likes/:id', ctrlblog.findUserLikes);
 
 router.delete('/blog/remove/:id', ctrlblog.deletePost);
 

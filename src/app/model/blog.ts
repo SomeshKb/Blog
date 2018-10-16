@@ -1,16 +1,16 @@
 export class Blog {
-    _id:string;
+    _id: string;
     title: string;
     authorID: string;
-    authorName:string;
+    authorName: string;
     published_date: string;
     like: Array<string>;
     content: string;
-    comments:Array<Comments>
+    comments: Array<Comments>
 }
 
-export class Comments{
+export class Comments {
     userName: string;
-    content : string;
-    userID : string;
+    content: string;
+    userID: string;
 }

@@ -162,3 +162,29 @@ exports.addComments = (req, res) => {
       });
     });
 };
+
+
+
+exports.updateBlog = (req, res) => {
+  
+  Blog.updateOne({
+      '_id': req.params.id
+    }, {
+      $set: {
+        "title": req.body.title,
+        "content": req.body.content
+
+      }
+    })
+    .then(res.send())
+    .catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: "Blog not found  " + req.params._id
+        });
+      }
+      return res.status(500).send({
+        message: "Error while retrieving blog " + req.params._id
+      });
+    });
+};

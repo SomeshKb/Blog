@@ -13,9 +13,11 @@ footer {
   align-items: center;
   justify-content: center;
   margin-top: 40px;
-  height: 30px;;
+  height: 30px;
+  ;
 }
+
 .wrapper p {
   font-size: 20px;
   align-self: baseline;
-} 
+}

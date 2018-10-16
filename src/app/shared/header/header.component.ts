@@ -14,9 +14,9 @@ export class HeaderComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService) {
     this.authenticationService.isUserLoggedIn.subscribe(value => {
-        this.user = this.authenticationService.getUserDetails();
-        this.isUserLoggedIn = value;
-      
+      this.user = this.authenticationService.getUserDetails();
+      this.isUserLoggedIn = value;
+
     });
   }
 

@@ -6,7 +6,7 @@ var http = require('http');
 
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
-  
+
 
 if (cluster.isMaster) {
   console.log(`Master ${process.pid} is running`);
@@ -15,7 +15,7 @@ if (cluster.isMaster) {
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
   }
-    cluster.on('online', (worker) => {
+  cluster.on('online', (worker) => {
     console.log(`worker with id:${worker.id} & pid:${worker.process.pid} is online`)
   })
 
@@ -26,9 +26,9 @@ if (cluster.isMaster) {
   // Workers can share any TCP connection
   // In this case it is an HTTP server
 
-var server = http.createServer(app);
-server.listen(8000);
+  var server = http.createServer(app);
+  server.listen(8000);
 
 
-console.log(`Worker ${process.pid} started`);
+  console.log(`Worker ${process.pid} started`);
 }

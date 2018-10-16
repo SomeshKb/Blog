@@ -16,18 +16,18 @@ export class SignupComponent implements OnInit {
   emailRegex = /^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$/;
   showSucessMessage: boolean;
   serverErrorMessages: string;
-  credentials:TokenPayload ={
-     'name':"",
-     'email':"",
-     'password':""
+  credentials: TokenPayload = {
+    'name': "",
+    'email': "",
+    'password': ""
   };
 
-  constructor(private auth:AuthenticationService,private router: Router,private alertService:AlertService) { }
+  constructor(private auth: AuthenticationService, private router: Router, private alertService: AlertService) { }
 
   ngOnInit() {
-      if(this.auth.isLoggedIn()){
-        this.router.navigateByUrl('/blogs');
-      }
+    if (this.auth.isLoggedIn()) {
+      this.router.navigateByUrl('/blogs');
+    }
   }
 
   onSubmit(form: NgForm) {
@@ -39,8 +39,8 @@ export class SignupComponent implements OnInit {
       alert("User Created")
       this.router.navigateByUrl('/blogs');
     }, (err) => {
-      if(err.status==409){
-        this.alertService.add(err.error.message);
+      if (err.status == 409) {
+        this.alertService.addAlertToast(err.error.message);
       }
     });
   }

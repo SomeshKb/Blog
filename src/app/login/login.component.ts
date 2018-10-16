@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenPayload, UserDetails } from '../model/user';
-import { BlogService } from '../services/blog.service';
 import { NgForm } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
@@ -22,13 +21,13 @@ export class LoginComponent implements OnInit {
     password: ''
   };
   user: UserDetails;
-  
-  constructor(private auth:AuthenticationService,private router: Router,private alertService:AlertService) { }
+
+  constructor(private auth: AuthenticationService, private router: Router, private alertService: AlertService) { }
 
   ngOnInit() {
-    if(this.auth.isLoggedIn()){
+    if (this.auth.isLoggedIn()) {
       this.router.navigateByUrl('/blogs');
-      
+
     }
   }
 
@@ -39,26 +38,26 @@ export class LoginComponent implements OnInit {
   login() {
 
     this.auth.login(this.credentials).subscribe(() => {
-     this.auth.isUserLoggedIn.next(true);
+      this.auth.isUserLoggedIn.next(true);
       this.router.navigateByUrl('/blogs');
     }, (err) => {
-      if(err.status===401){
-        this.alertService.add('Invalid Credentials');
-        
+      if (err.status === 401) {
+        this.alertService.addAlertToast('Invalid Credentials');
+
       }
     });
   }
 
 
   resetForm(form: NgForm) {
-      this.credentials={
-        'email':"",
-        'password':""
-     };
+    this.credentials = {
+      'email': "",
+      'password': ""
+    };
   }
 
-  getDetails(){
-      this.user = this.auth.getUserDetails();
+  getDetails() {
+    this.user = this.auth.getUserDetails();
   }
 
 }

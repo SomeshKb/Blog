@@ -24,20 +24,20 @@ export class BlogDetailsComponent implements OnInit {
   isLiked: boolean;
   likeby: number;
 
-  comments:Comments={
-    userName:"",
-    content:"",
-    userID:""
+  comments: Comments = {
+    userName: "",
+    content: "",
+    userID: ""
   };
 
 
   constructor(private blogService: BlogService, private route: ActivatedRoute, private router: Router,
-     private auth: AuthenticationService, private userService: UserService, private alertServices:AlertService) {
-    
-      if (auth.isLoggedIn()) {
+    private auth: AuthenticationService, private userService: UserService, private alertServices: AlertService) {
+
+    if (auth.isLoggedIn()) {
       this.auth.isUserLoggedIn.next(true);
       this.user = this.auth.getUserDetails();
-    
+
     }
   }
 
@@ -47,10 +47,10 @@ export class BlogDetailsComponent implements OnInit {
   }
 
 
-  getCommentUserName( userID:string){
-   this.userService.getAuthorName(userID)
-     .subscribe(result=> {console.log(result);});
-        
+  getCommentUserName(userID: string) {
+    this.userService.getAuthorName(userID)
+      .subscribe(result => { console.log(result); });
+
   }
 
 
@@ -88,20 +88,28 @@ export class BlogDetailsComponent implements OnInit {
   removePost(): void {
     this.blogService.removeBlog(this.blog)
       .subscribe(() => {
-        this.alertServices.add("Blog deleted successfully")
+        this.alertServices.addAlertToast("Blog deleted successfully")
         this.router.navigateByUrl("/blogs");
       }, (err) => {
         if (err.status === 200) {
-          this.alertServices.add("Blog deleted successfully")
+          this.alertServices.addAlertToast("Blog deleted successfully")
           this.router.navigateByUrl("/blogs");
         } else if (err.status === 404) {
-          this.alertServices.add("Blog Not Found")
-         
+          this.alertServices.addAlertToast("Blog Not Found")
         }
       }
 
       )
   }
+
+
+  editPost(): void {
+    this.router.navigateByUrl("/blog/edit/" + this.blog._id);
+
+  }
+
+
+
 
   getBlogDetail(id: string): void {
     this.blogService.getBlog(id)
@@ -114,16 +122,16 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.comments.userID=this.auth.getUserDetails()._id;;
-    this.comments.userName=this.auth.getUserDetails().name;
-    this.blogService.addComments(this.blog._id,this.comments).subscribe(()=>{
+    this.comments.userID = this.auth.getUserDetails()._id;;
+    this.comments.userName = this.auth.getUserDetails().name;
+    this.blogService.addComments(this.blog._id, this.comments).subscribe(() => {
       this.clearCommentForm();
 
       this.getBlogDetail(this.blog._id);
     });
   }
 
-  clearCommentForm(){
-    this.comments.content=""
+  clearCommentForm() {
+    this.comments.content = ""
   }
 }

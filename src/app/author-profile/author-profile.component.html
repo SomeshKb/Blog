@@ -1,26 +1,26 @@
-<div class="container"> 
+<div class="container">
   <dl *ngIf="author">
-  <h3>Author</h3>
-  <dt>Name:</dt>
-  <dd>{{author.name}}</dd>
-  <dt>Email:</dt>
-  <dd>{{author.email}}</dd>
-</dl>
+    <h3>Author</h3>
+    <dt>Name:</dt>
+    <dd>{{author.name}}</dd>
+    <dt>Email:</dt>
+    <dd>{{author.email}}</dd>
+  </dl>
 
 
 
 
-<div class="blog" *ngIf="blog">
+  <div class="blog" *ngIf="blog">
 
-  <p *ngIf="likes!=0">Total Likes:{{likes}}</p>
+    <p *ngIf="likes!=0">Total Likes:{{likes}}</p>
 
-  <h2>Author's Blogs</h2>
+    <h2>Author's Blogs</h2>
 
-  <dl *ngFor="let item of blog" >
-    <dt routerLink="/blog/{{item._id}}">{{item.title}}</dt>
-</dl>
+    <dl *ngFor="let item of blog">
+      <dt routerLink="/blog/{{item._id}}">{{item.title}}</dt>
+    </dl>
 
-</div>
+  </div>
 
 
 </div>

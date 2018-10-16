@@ -1,4 +1,6 @@
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -8,16 +10,16 @@ form {
   max-width: 300px;
   margin: 40px auto;
   padding: 10px 20px;
-  background:  linear-gradient(150deg,#ebebeb,#a8a8a8,#757575);
+  background: linear-gradient(150deg, #ebebeb, #a8a8a8, #757575);
   border-radius: 16px;
   border: 10px #444444;
-  box-shadow: 8px 8px  rgb(78, 77, 77);
+  box-shadow: 8px 8px rgb(78, 77, 77);
 }
- 
+
 input[type="text"],
 input[type="password"],
-input[type="email"]{
-    border: none;
+input[type="email"] {
+  border: none;
   font-size: 16px;
   height: auto;
   margin: 0;
@@ -26,11 +28,11 @@ input[type="email"]{
   width: 100%;
   background-color: #ffffff;
   color: #6d6d6d;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
   margin-top: 30px;
   border-radius: 15px;
 }
-  
+
 input[type="submit"] {
   padding: 19px 39px 18px 39px;
   color: rgb(223, 223, 223);
@@ -48,16 +50,17 @@ input[type="submit"]:hover {
   cursor: pointer;
   box-shadow: 6px 6px rgb(0, 0, 0);
   background-color: #444444;
-  transform: scale(1.05,1.05);
+  transform: scale(1.05, 1.05);
 
 }
 
-.signUp{
+.signUp {
   max-width: 200px;
 
   margin: 10px auto;
 
 }
+
 button {
   max-width: 200px;
   margin-top: 20px;
@@ -73,7 +76,7 @@ button:hover {
   margin-top: 22px;
   cursor: pointer;
   margin-bottom: 2px;
-  box-shadow: 8px 8px  rgb(179, 179, 179);
+  box-shadow: 8px 8px rgb(179, 179, 179);
 }
 
 @media screen and (min-width: 480px) {
@@ -83,4 +86,3 @@ button:hover {
   }
 
 }
-

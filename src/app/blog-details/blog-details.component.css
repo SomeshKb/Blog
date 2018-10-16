@@ -91,7 +91,7 @@ button:hover {
   background: grey;
 }
 
-button:disabled{
+button:disabled {
   background: grey;
 }
 
@@ -100,12 +100,13 @@ button:disabled{
   color: grey;
 }
 
-.comment{
+.comment {
   margin: auto;
   width: 60%;
 
 }
-dl{
+
+dl {
   margin: 10px;
   font-family: Courier New, Courier, monospace;
 }
@@ -126,18 +127,18 @@ dl{
 
 }
 
-#addComments{
+#addComments {
   margin: auto;
   width: 60%;
   color: #ffffff;
   font-family: Courier New, Courier, monospace;
 }
 
-.comment h2{
-    margin-top: 10px;
-    margin-bottom: 0px;
-    font-size: 18px;
-    color: grey;
+.comment h2 {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-size: 18px;
+  color: grey;
 }
 
 #addComments input[type="text"] {
@@ -160,7 +161,7 @@ dl{
   box-shadow: 6px 6px rgb(0, 0, 0);
   background-color: #afafaf;
 }
-  
-.validation-message{
+
+.validation-message {
   color: #4b4b4b;
 }

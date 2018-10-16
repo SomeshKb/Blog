@@ -18,15 +18,16 @@ var blogSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  like: {type:Array
+  like: {
+    type: Array
   },
   content: {
     type: String,
     required: true
   },
-  comments:{
-      type: Array 
+  comments: {
+    type: Array
   }
 });
 
-module.exports=mongoose.model("blogs",blogSchema);
+module.exports = mongoose.model("blogs", blogSchema);
